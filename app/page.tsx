@@ -1,11 +1,14 @@
 "use client"
 
-import { motion } from "framer-motion"
-import { Check, Zap, Star, Shield, Headphones, RefreshCw, Edit3, PlusCircle, Wrench, Phone, ArrowRight, Globe, Share2, MapPin, Users, ArrowDown, Database, Handshake, X } from "lucide-react"
+import { useState, useEffect, useRef } from "react"
+import { motion, useScroll, useSpring, AnimatePresence } from "framer-motion"
+import { Check, Zap, Star, Shield, Headphones, RefreshCw, Edit3, PlusCircle, Wrench, Phone, ArrowRight, Globe, Share2, MapPin, Users, ArrowDown, Database, Handshake, X, ChevronUp, ChevronDown, Menu } from "lucide-react"
 
-// PLACEHOLDER - Twój numer telefonu
-const PHONE_NUMBER = "+48 XXX XXX XXX"
-const PHONE_NUMBER_HREF = "tel:+48XXXXXXXXX"
+const CLIENT_NAME = "Artur"
+const CONTACTS = [
+  { name: "Leon", phone: "728 561 373", href: "tel:+48728561373" },
+  { name: "Kamil", phone: "501 747 490", href: "tel:+48501747490" },
+]
 
 const fadeInUp = {
   initial: { opacity: 0, y: 40 },
@@ -22,8 +25,110 @@ const staggerContainer = {
 }
 
 export default function BillboardPage() {
+  const [showScrollTop, setShowScrollTop] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const { scrollYProgress } = useScroll()
+  const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30 })
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 500)
+      setScrolled(window.scrollY > 50)
+    }
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
+
+  const scrollToSection = (id: string) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" })
+    setMobileMenuOpen(false)
+  }
+
+  const navItems = [
+    { label: "System", id: "system" },
+    { label: "Pakiety", id: "pakiety" },
+    { label: "Utrzymanie", id: "utrzymanie" },
+    { label: "Kontakt", id: "kontakt" },
+  ]
+
   return (
     <div className="min-h-screen bg-background text-foreground overflow-hidden">
+      {/* Progress Bar */}
+      <motion.div
+        className="fixed top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-primary via-accent to-primary z-[60] origin-left"
+        style={{ scaleX }}
+      />
+
+      {/* Sticky Navigation */}
+      <motion.nav
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.5 }}
+        className={`fixed top-[3px] left-0 right-0 z-50 transition-all duration-300 ${scrolled
+          ? "bg-background/80 backdrop-blur-xl border-b border-border shadow-lg shadow-background/50"
+          : "bg-transparent"
+          }`}
+      >
+        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+          <span className="text-lg font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+            KT & LB
+          </span>
+
+          {/* Desktop nav */}
+          <div className="hidden md:flex items-center gap-8">
+            {navItems.map((item) => (
+              <button
+                key={item.id}
+                onClick={() => scrollToSection(item.id)}
+                className="text-sm text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
+              >
+                {item.label}
+              </button>
+            ))}
+            <button
+              onClick={() => scrollToSection("kontakt")}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary text-primary-foreground text-sm font-medium hover:scale-105 transition-transform cursor-pointer"
+            >
+              <Phone className="w-4 h-4" />
+              Zadzwoń
+            </button>
+          </div>
+
+          {/* Mobile menu button */}
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="md:hidden p-2 text-foreground cursor-pointer"
+          >
+            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
+        </div>
+
+        {/* Mobile menu */}
+        <AnimatePresence>
+          {mobileMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              className="md:hidden bg-background/95 backdrop-blur-xl border-b border-border overflow-hidden"
+            >
+              <div className="px-6 py-4 space-y-3">
+                {navItems.map((item) => (
+                  <button
+                    key={item.id}
+                    onClick={() => scrollToSection(item.id)}
+                    className="block w-full text-left text-sm text-muted-foreground hover:text-foreground transition-colors py-2 cursor-pointer"
+                  >
+                    {item.label}
+                  </button>
+                ))}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </motion.nav>
+
       {/* Background decorative elements */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden">
         <div className="absolute top-0 left-1/4 w-[600px] h-[600px] rounded-full bg-primary/10 blur-[120px]" />
@@ -32,27 +137,20 @@ export default function BillboardPage() {
       </div>
 
       {/* Hero Section */}
-      <section className="relative px-6 py-24 md:py-32 lg:py-40">
+      <section id="hero" className="relative px-6 py-24 md:py-32 lg:py-40">
         <motion.div
           initial="initial"
           animate="animate"
           variants={staggerContainer}
           className="max-w-4xl mx-auto text-center"
         >
-          <motion.div variants={fadeInUp} className="mb-6">
-            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-border bg-card/50 text-sm text-muted-foreground backdrop-blur-sm">
-              <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-              Oferta przygotowana specjalnie dla Ciebie
-            </span>
-          </motion.div>
-
           <motion.h1
             variants={fadeInUp}
             className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6 text-balance"
           >
             <span className="text-foreground">Cześć, </span>
-            <span className="bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">
-              [Imię Klienta]
+            <span className="bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent bg-[length:200%_200%] animate-[gradient-shift_4s_ease_infinite]">
+              {CLIENT_NAME}
             </span>
           </motion.h1>
 
@@ -70,20 +168,35 @@ export default function BillboardPage() {
             Sprawdź, jak możemy pomóc Ci pozyskiwać więcej klientów i budować rozpoznawalność marki
           </motion.p>
 
-          {/* Decorative line */}
+          {/* CTA Button */}
+          <motion.div variants={fadeInUp} className="mt-10">
+            <button
+              onClick={() => document.getElementById('kontakt')?.scrollIntoView({ behavior: 'smooth' })}
+              className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-primary text-primary-foreground font-semibold text-lg transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary/25"
+            >
+              <Phone className="w-5 h-5" />
+              Porozmawiajmy
+            </button>
+          </motion.div>
+
+          {/* Scroll down arrow */}
           <motion.div
             variants={fadeInUp}
-            className="mt-16 flex items-center justify-center gap-4"
+            className="mt-16 flex flex-col items-center gap-2"
           >
-            <div className="h-px w-16 bg-gradient-to-r from-transparent to-primary/50" />
-            <div className="w-2 h-2 rounded-full bg-primary" />
-            <div className="h-px w-16 bg-gradient-to-l from-transparent to-primary/50" />
+            <span className="text-xs text-muted-foreground">Przewiń w dół</span>
+            <motion.div
+              animate={{ y: [0, 8, 0] }}
+              transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+            >
+              <ChevronDown className="w-6 h-6 text-primary/60" />
+            </motion.div>
           </motion.div>
         </motion.div>
       </section>
 
       {/* Process Section - System Graph */}
-      <section className="relative px-6 py-16 md:py-24">
+      <section id="system" className="relative px-6 py-16 md:py-24">
         <motion.div
           initial="initial"
           whileInView="animate"
@@ -98,172 +211,124 @@ export default function BillboardPage() {
             </p>
           </motion.div>
 
-          {/* Legend */}
-          <motion.div variants={fadeInUp} className="flex flex-wrap justify-center gap-6 mb-12">
-            <div className="flex items-center gap-2">
-              <div className="w-4 h-4 rounded-full bg-red-500/80" />
-              <span className="text-sm text-muted-foreground">Brakuje - do wdrożenia</span>
+          {/* New Modern Pipeline Layout */}
+          <div className="relative max-w-3xl mx-auto py-12">
+            {/* Main connecting spine */}
+            <div className="absolute left-[39px] md:left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-red-500/50 via-primary/50 to-emerald-500/50 rounded-full md:-translate-x-1/2 z-0" />
+
+            {/* Step 1: Default sources (Have) */}
+            <motion.div variants={fadeInUp} className="relative z-10 flex flex-col md:flex-row items-center mb-12 md:mb-20">
+              <div className="w-full md:w-1/2 ml-20 md:ml-0 pr-0 md:pr-12 text-left md:text-right order-2 md:order-1 mt-4 md:mt-0">
+                <h3 className="text-xl font-bold text-emerald-500 mb-2">Stare bazy klientów (Masz)</h3>
+                <p className="text-sm text-muted-foreground bg-card/60 p-4 rounded-xl border border-emerald-500/20 backdrop-blur-sm">
+                  Działasz na poleceniach i opierasz się na starych kontaktach. Dzwonisz lub piszesz do firm, które znają już Twoje nośniki i realizowały z Tobą zlecenia w ubiegłym roku. To stabilny, ale wolno rosnący kanał.
+                </p>
+              </div>
+              <div className="absolute left-4 md:left-1/2 w-12 h-12 rounded-full bg-background border-4 border-emerald-500 flex items-center justify-center -translate-x-1/2 shadow-[0_0_15px_rgba(16,185,129,0.3)] z-20">
+                <Users className="w-5 h-5 text-emerald-500" />
+              </div>
+              <div className="w-full md:w-1/2 md:pl-12 order-3" />
+            </motion.div>
+
+            {/* Step 2: Social Media (Missing) */}
+            <motion.div variants={fadeInUp} className="relative z-10 flex flex-col md:flex-row items-center mb-12 md:mb-20">
+              <div className="w-full md:w-1/2 pr-12 order-1 hidden md:block" />
+              <div className="absolute left-4 md:left-1/2 w-12 h-12 rounded-full bg-background border-4 border-red-500 flex items-center justify-center -translate-x-1/2 shadow-[0_0_15px_rgba(239,68,68,0.3)] z-20">
+                <Share2 className="w-5 h-5 text-red-500" />
+              </div>
+              <div className="w-full md:w-1/2 ml-20 md:ml-0 pl-0 md:pl-12 order-2 text-left">
+                <h3 className="text-xl font-bold text-red-500 mb-2">Social Media (Brak)</h3>
+                <p className="text-sm text-muted-foreground bg-card/60 p-4 rounded-xl border border-red-500/20 backdrop-blur-sm">
+                  Tracisz ogromny potencjał darmowego ruchu. Na Facebooku i Instagramie mógłbyś budować rozpoznawalność marki w Twoim regionie i przypominać o sobie lokalnym firmom.
+                </p>
+              </div>
+            </motion.div>
+
+            {/* Strzałeczka pomiedzy krokami */}
+            <div className="flex justify-center mb-10 mt-[-10px] hidden md:flex relative z-10">
+              <ArrowDown className="w-6 h-6 text-red-500 animate-bounce" />
             </div>
-            <div className="flex items-center gap-2">
-              <div className="w-4 h-4 rounded-full bg-emerald-500/80" />
-              <span className="text-sm text-muted-foreground">Masz - Twoje procesy</span>
+
+            {/* Step 3: Google (Missing) */}
+            <motion.div variants={fadeInUp} className="relative z-10 flex flex-col md:flex-row items-center mb-12 md:mb-20">
+              <div className="w-full md:w-1/2 ml-20 md:ml-0 pr-0 md:pr-12 text-left md:text-right order-2 md:order-1 mt-4 md:mt-0">
+                <h3 className="text-xl font-bold text-red-500 mb-2">Wizytówka Google & SEO (Brak)</h3>
+                <p className="text-sm text-muted-foreground bg-card/60 p-4 rounded-xl border border-red-500/20 backdrop-blur-sm">
+                  Ponad 80% nowych firm wpisuje w wyszukiwarkę "wynajem billboardu [miasto]". Bez optymalizacji, ten ruch trafia ucieka do Twojej konkurencji.
+                </p>
+              </div>
+              <div className="absolute left-4 md:left-1/2 w-12 h-12 rounded-full bg-background border-4 border-red-500 flex items-center justify-center -translate-x-1/2 shadow-[0_0_15px_rgba(239,68,68,0.3)] z-20">
+                <MapPin className="w-5 h-5 text-red-500" />
+              </div>
+              <div className="w-full md:w-1/2 md:pl-12 order-3" />
+            </motion.div>
+
+            {/* Strzałeczka do najważniejszego kroku */}
+            <div className="flex justify-center mb-10 mt-[-10px] hidden md:flex relative z-10">
+              <ArrowDown className="w-6 h-6 text-red-500 animate-bounce" />
             </div>
-          </motion.div>
 
-          {/* Graph Layout */}
-          <div className="relative">
-            {/* Row 1: Traffic Sources - RED (missing) */}
-            <motion.div variants={fadeInUp} className="grid md:grid-cols-3 gap-6 mb-4">
-              {/* Social Media */}
-              <div className="relative p-5 rounded-2xl border-2 border-red-500/50 bg-red-500/5 backdrop-blur-sm">
-                <div className="absolute -top-3 left-4">
-                  <span className="px-2 py-0.5 text-xs font-bold rounded-full bg-red-500 text-white">BRAKUJE</span>
+            {/* Step 3: Website (Critical Missing Hub) */}
+            <motion.div variants={fadeInUp} className="relative z-10 flex flex-col md:flex-row items-center mb-16 md:mb-24">
+              <div className="w-full md:w-1/2 ml-20 md:ml-0 pr-0 md:pr-12 text-left md:text-right order-2 md:order-1 mt-6 md:mt-0 relative">
+                {/* Visual cue to center line */}
+                <div className="hidden md:block absolute right-0 top-1/2 -translate-y-1/2 w-24 h-1 bg-gradient-to-l from-red-500/80 to-transparent" />
+
+                <div className="inline-block px-4 py-1.5 mb-3 text-xs font-bold rounded-full bg-red-500/20 text-red-400 border border-red-500/50 animate-pulse uppercase tracking-wider relative top-[-10px]">
+                  Brakujące ogniwo - Fundament w sieci
                 </div>
-                <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-xl bg-red-500/20 border border-red-500/30 flex items-center justify-center">
-                    <Share2 className="w-6 h-6 text-red-400" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-red-400">Social Media</h3>
-                    <p className="text-xs text-muted-foreground">Klienci z social media</p>
-                  </div>
-                </div>
+                <h3 className="text-3xl font-extrabold text-foreground mb-3 tracking-tight">Strona Internetowa</h3>
+                <p className="text-base text-foreground bg-red-500/10 p-5 rounded-xl border-2 border-red-500/40 backdrop-blur-md shadow-[0_0_30px_rgba(239,68,68,0.15)]">
+                  <strong>Bezwzględne centrum dowodzenia.</strong> To tutaj starzy klienci wchodzą sprawdzić nowe lokalizacje billboardów, a zupełnie nowy ruch z wyszukiwarki zmienia się w gorące zapytania (leady) wysyłane wprost na Twój telefon.
+                </p>
               </div>
+              <div className="absolute left-4 md:left-1/2 w-20 h-20 rounded-full bg-background border-[5px] border-red-500 flex items-center justify-center -translate-x-1/2 shadow-[0_0_50px_rgba(239,68,68,0.6)] z-20 overflow-hidden">
+                <div className="absolute inset-0 bg-red-500/20 animate-ping rounded-full" />
+                <Globe className="w-10 h-10 text-red-500 relative z-10" />
+              </div>
+              <div className="w-full md:w-1/2 md:pl-12 order-3" />
+            </motion.div>
 
-              {/* Empty center for alignment */}
-              <div className="hidden md:block" />
+            {/* Step 3: Baza (Have) */}
+            <motion.div variants={fadeInUp} className="relative z-10 flex flex-col md:flex-row items-center mb-12 md:mb-20">
+              <div className="w-full md:w-1/2 ml-20 md:ml-0 pr-0 md:pr-12 text-left md:text-right order-2 md:order-1 mt-4 md:mt-0">
+                <h3 className="text-xl font-bold text-emerald-500 mb-2">Baza klientów (Masz)</h3>
+                <p className="text-sm text-muted-foreground bg-card/60 p-4 rounded-xl border border-emerald-500/20 backdrop-blur-sm">
+                  Zapytania ze strony trafiają wprost do Ciebie (na maila i telefon), łącząc się z Twoją istniejącą wiedzą o obsłudze klienta.
+                </p>
+              </div>
+              <div className="absolute left-4 md:left-1/2 w-12 h-12 rounded-full bg-background border-4 border-emerald-500 flex items-center justify-center -translate-x-1/2 shadow-[0_0_15px_rgba(16,185,129,0.3)] z-20">
+                <Database className="w-5 h-5 text-emerald-500" />
+              </div>
+              <div className="w-full md:w-1/2 md:pl-12 order-3" />
+            </motion.div>
 
-              {/* Google Business */}
-              <div className="relative p-5 rounded-2xl border-2 border-red-500/50 bg-red-500/5 backdrop-blur-sm">
-                <div className="absolute -top-3 left-4">
-                  <span className="px-2 py-0.5 text-xs font-bold rounded-full bg-red-500 text-white">BRAKUJE</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-xl bg-red-500/20 border border-red-500/30 flex items-center justify-center">
-                    <MapPin className="w-6 h-6 text-red-400" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-red-400">Wizytówka Google</h3>
-                    <p className="text-xs text-muted-foreground">Klienci z wyszukiwarki</p>
-                  </div>
-                </div>
+            {/* Step 4: Procesy (Have) */}
+            <motion.div variants={fadeInUp} className="relative z-10 flex flex-col md:flex-row items-center mb-12 md:mb-20">
+              <div className="w-full md:w-1/2 pr-12 order-1 hidden md:block" />
+              <div className="absolute left-4 md:left-1/2 w-12 h-12 rounded-full bg-background border-4 border-emerald-500 flex items-center justify-center -translate-x-1/2 shadow-[0_0_15px_rgba(16,185,129,0.3)] z-20">
+                <Users className="w-5 h-5 text-emerald-500" />
+              </div>
+              <div className="w-full md:w-1/2 ml-20 md:ml-0 pl-0 md:pl-12 order-2 text-left">
+                <h3 className="text-xl font-bold text-emerald-500 mb-2">Negocjacje (Masz)</h3>
+                <p className="text-sm text-muted-foreground bg-card/60 p-4 rounded-xl border border-emerald-500/20 backdrop-blur-sm">
+                  Korzystasz z wypracowanych procesów. Oceniasz leady, wyceniasz kampanie i domykasz sprzedaż.
+                </p>
               </div>
             </motion.div>
 
-            {/* Arrows from sources to website */}
-            <motion.div variants={fadeInUp} className="flex justify-center items-center gap-4 my-4">
-              <div className="hidden md:flex items-center">
-                <div className="w-24 h-0.5 bg-gradient-to-r from-red-500/50 to-red-500/80" />
-                <ArrowDown className="w-5 h-5 text-red-500 rotate-[-45deg]" />
+            {/* Step 5: Wynajem (Have) */}
+            <motion.div variants={fadeInUp} className="relative z-10 flex flex-col md:flex-row items-center">
+              <div className="w-full md:w-1/2 ml-20 md:ml-0 pr-0 md:pr-12 text-left md:text-right order-2 md:order-1 mt-4 md:mt-0">
+                <h3 className="text-2xl font-bold text-emerald-500 mb-2">Realizacja!</h3>
+                <p className="text-sm text-muted-foreground bg-emerald-500/5 p-4 rounded-xl border border-emerald-500/30 backdrop-blur-sm">
+                  Biznes rośnie. Wynajmujesz kolejne powierzchnie, bo masz ciągły dopływ nowych kontaktów, o który dba nowa strona.
+                </p>
               </div>
-              <div className="flex flex-col items-center">
-                <ArrowDown className="w-6 h-6 text-red-500" />
-                <span className="text-xs text-red-400 mt-1">ruch trafia na</span>
+              <div className="absolute left-4 md:left-1/2 w-16 h-16 rounded-full bg-emerald-950 border-4 border-emerald-500 flex items-center justify-center -translate-x-1/2 shadow-[0_0_30px_rgba(16,185,129,0.5)] z-20">
+                <Handshake className="w-6 h-6 text-emerald-400" />
               </div>
-              <div className="hidden md:flex items-center">
-                <ArrowDown className="w-5 h-5 text-red-500 rotate-[45deg]" />
-                <div className="w-24 h-0.5 bg-gradient-to-l from-red-500/50 to-red-500/80" />
-              </div>
-            </motion.div>
-
-            {/* Row 2: Website - CENTER, RED (missing) */}
-            <motion.div variants={fadeInUp} className="flex justify-center mb-4">
-              <div className="relative w-full max-w-lg">
-                {/* Glow effect for importance */}
-                <div className="absolute -inset-2 rounded-3xl bg-red-500/20 blur-xl" />
-                <div className="relative p-6 rounded-2xl border-2 border-red-500 bg-gradient-to-br from-red-500/10 via-card to-red-500/5 backdrop-blur-sm">
-                  <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                    <span className="px-3 py-1 text-xs font-bold rounded-full bg-red-500 text-white">KLUCZOWY ELEMENT - BRAKUJE</span>
-                  </div>
-                  <div className="flex flex-col items-center text-center pt-2">
-                    <div className="w-16 h-16 rounded-2xl bg-red-500/20 border-2 border-red-500/50 flex items-center justify-center mb-4">
-                      <Globe className="w-8 h-8 text-red-400" />
-                    </div>
-                    <h3 className="text-xl font-bold text-red-400 mb-2">Strona internetowa</h3>
-                    <p className="text-sm text-muted-foreground max-w-sm">
-                      Centrum dowodzenia - tu trafia cały ruch i tu zbierasz zapytania od potencjalnych klientów
-                    </p>
-                    <div className="mt-4 pt-4 border-t border-red-500/30 w-full">
-                      <div className="flex items-center justify-center gap-2 text-red-400">
-                        <X className="w-4 h-4" />
-                        <span className="text-sm font-medium">Bez strony nie masz gdzie kierować ruchu!</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Arrow from website to database */}
-            <motion.div variants={fadeInUp} className="flex flex-col items-center my-4">
-              <ArrowDown className="w-6 h-6 text-primary" />
-              <span className="text-xs text-primary mt-1">zapytania trafiają do</span>
-            </motion.div>
-
-            {/* Row 3: Client's Database - GREEN (has it) */}
-            <motion.div variants={fadeInUp} className="flex justify-center mb-4">
-              <div className="relative p-5 rounded-2xl border-2 border-emerald-500/50 bg-emerald-500/5 backdrop-blur-sm w-full max-w-md">
-                <div className="absolute -top-3 left-4">
-                  <span className="px-2 py-0.5 text-xs font-bold rounded-full bg-emerald-500 text-white">MASZ</span>
-                </div>
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center">
-                    <Database className="w-6 h-6 text-emerald-400" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-emerald-400">Twoja baza klientów</h3>
-                    <p className="text-xs text-muted-foreground">Kontakty i zapytania do obsługi</p>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Arrow from database to processes */}
-            <motion.div variants={fadeInUp} className="flex flex-col items-center my-4">
-              <ArrowDown className="w-6 h-6 text-emerald-500" />
-              <span className="text-xs text-emerald-400 mt-1">obsługujesz przez</span>
-            </motion.div>
-
-            {/* Row 4: Client's Processes - GREEN (has it) */}
-            <motion.div variants={fadeInUp} className="flex justify-center mb-4">
-              <div className="relative p-5 rounded-2xl border-2 border-emerald-500/50 bg-emerald-500/5 backdrop-blur-sm w-full max-w-md">
-                <div className="absolute -top-3 left-4">
-                  <span className="px-2 py-0.5 text-xs font-bold rounded-full bg-emerald-500 text-white">MASZ</span>
-                </div>
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center">
-                    <Users className="w-6 h-6 text-emerald-400" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-emerald-400">Twoje procesy sprzedaży</h3>
-                    <p className="text-xs text-muted-foreground">Kontakt, wycena, negocjacje</p>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Arrow from processes to deal */}
-            <motion.div variants={fadeInUp} className="flex flex-col items-center my-4">
-              <ArrowDown className="w-6 h-6 text-emerald-500" />
-              <span className="text-xs text-emerald-400 mt-1">i finalizujesz</span>
-            </motion.div>
-
-            {/* Row 5: Realization - GREEN (has it) */}
-            <motion.div variants={fadeInUp} className="flex justify-center">
-              <div className="relative p-5 rounded-2xl border-2 border-emerald-500 bg-gradient-to-br from-emerald-500/10 via-card to-emerald-500/5 backdrop-blur-sm w-full max-w-md">
-                <div className="absolute -top-3 left-4">
-                  <span className="px-2 py-0.5 text-xs font-bold rounded-full bg-emerald-500 text-white">MASZ</span>
-                </div>
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-emerald-500/20 border-2 border-emerald-500/50 flex items-center justify-center">
-                    <Handshake className="w-6 h-6 text-emerald-400" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-emerald-400">Realizacja zlecenia</h3>
-                    <p className="text-xs text-muted-foreground">Klient wynajmuje billboard - zarabiasz</p>
-                  </div>
-                </div>
-              </div>
+              <div className="w-full md:w-1/2 md:pl-12 order-3" />
             </motion.div>
           </div>
 
@@ -272,7 +337,7 @@ export default function BillboardPage() {
             <div className="text-center">
               <h3 className="text-xl font-bold mb-3">Strona to brakujące ogniwo</h3>
               <p className="text-muted-foreground max-w-2xl mx-auto mb-4">
-                Masz doświadczenie, procesy i umiejętności do obsługi klientów. Brakuje Ci tylko miejsca, gdzie możesz ich zbierać. 
+                Masz doświadczenie, procesy i umiejętności do obsługi klientów. Brakuje Ci tylko miejsca, gdzie możesz ich zbierać.
                 <span className="text-foreground font-medium"> Strona internetowa to fundament - bez niej social media i wizytówka Google nie mają sensu.</span>
               </p>
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/30">
@@ -285,7 +350,7 @@ export default function BillboardPage() {
       </section>
 
       {/* Pricing Section */}
-      <section className="relative px-6 py-16 md:py-24">
+      <section id="pakiety" className="relative px-6 py-16 md:py-24">
         <motion.div
           initial="initial"
           whileInView="animate"
@@ -326,16 +391,23 @@ export default function BillboardPage() {
                 <ul className="space-y-4">
                   {[
                     "Nowoczesna, responsywna strona (mobile + desktop)",
-                    "Podstawowe animacje i przejścia",
-                    "Prosta interaktywność (formularz kontaktowy, przyciski)",
-                    "Przejrzysta struktura i szybkie działanie",
-                    "Wdrożenie gotowej strony"
+                    "Podstawowy formularz kontaktowy (na e-mail)",
+                    "Przejrzysty i optymalny układ treści",
+                    "Wdrożenie pod klucz na Twój hosting"
                   ].map((feature, i) => (
                     <li key={i} className="flex items-start gap-3 text-sm text-foreground/80">
                       <Check className="w-5 h-5 text-primary shrink-0 mt-0.5" />
                       <span>{feature}</span>
                     </li>
                   ))}
+                  <li className="flex items-start gap-3 text-sm text-muted-foreground/50">
+                    <X className="w-5 h-5 text-muted-foreground shrink-0 mt-0.5" />
+                    <span className="line-through">System łowienia leadów (autouzupełnianie, SMS)</span>
+                  </li>
+                  <li className="flex items-start gap-3 text-sm text-muted-foreground/50">
+                    <X className="w-5 h-5 text-muted-foreground shrink-0 mt-0.5" />
+                    <span className="line-through">Copywriting zwiększający konwersję</span>
+                  </li>
                 </ul>
               </div>
             </motion.div>
@@ -368,19 +440,19 @@ export default function BillboardPage() {
                   <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
-                  <span className="font-medium">7 dni</span>
+                  <span className="font-medium">10 dni</span>
                 </div>
 
                 <ul className="space-y-4">
                   {[
-                    "Indywidualny projekt graficzny dopasowany do marki",
-                    "Zaawansowane animacje zwiększające zaangażowanie",
-                    "Pełna interaktywność strony",
-                    "Rozbudowane formularze + automatyzacje (szybkie zapytania, system leadów)",
-                    "Optymalizacja pod pozyskiwanie klientów (większa konwersja)",
-                    "Nowoczesne rozwiązania technologiczne i wysoka wydajność"
+                    "Profesjonalny projekt z zaawansowanymi animacjami",
+                    "Copywriting sprzedażowy skrojony pod profil klienta",
+                    "System skutecznego łowienia leadów B2B",
+                    "Błyskawiczne powiadomienia na telefon o nowym zapytaniu",
+                    "Optymalizacja UX/UI gwarantująca wysoką konwersję (tzw. lejek)",
+                    "Klarowna prezentacja zalet Twoich kluczowych lokalizacji"
                   ].map((feature, i) => (
-                    <li key={i} className="flex items-start gap-3 text-sm text-foreground/90">
+                    <li key={i} className="flex items-start gap-3 text-sm text-foreground/90 font-medium">
                       <Check className="w-5 h-5 text-primary shrink-0 mt-0.5" />
                       <span>{feature}</span>
                     </li>
@@ -412,7 +484,7 @@ export default function BillboardPage() {
                 </div>
 
                 <div className="mb-6">
-                  <span className="text-4xl md:text-5xl font-bold">6 000</span>
+                  <span className="text-4xl md:text-5xl font-bold">7 000</span>
                   <span className="text-xl text-muted-foreground ml-2">zł</span>
                 </div>
 
@@ -439,11 +511,66 @@ export default function BillboardPage() {
               </div>
             </motion.div>
           </div>
+
+          {/* Setup Table Comparison */}
+          <motion.div variants={fadeInUp} className="mt-20 max-w-4xl mx-auto">
+            <h3 className="text-2xl font-bold text-center mb-8">Porównanie funkcji pakietów</h3>
+            <div className="overflow-x-auto rounded-xl border border-border bg-card/40 backdrop-blur-sm">
+              <table className="w-full text-sm text-left">
+                <thead className="text-xs text-muted-foreground uppercase bg-card/50 border-b border-border">
+                  <tr>
+                    <th className="px-6 py-4 font-medium">Funkcjonalność</th>
+                    <th className="px-6 py-4 font-medium text-center">START</th>
+                    <th className="px-6 py-4 font-medium text-center text-primary">ROZWÓJ</th>
+                    <th className="px-6 py-4 font-medium text-center text-accent">EXPRESS</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-border">
+                  <tr className="hover:bg-card/60 transition-colors">
+                    <td className="px-6 py-4 text-foreground/90">Wdrożenie i optymalizacja hostingu</td>
+                    <td className="px-6 py-4 text-center"><Check className="w-4 h-4 mx-auto text-primary" /></td>
+                    <td className="px-6 py-4 text-center"><Check className="w-4 h-4 mx-auto text-primary" /></td>
+                    <td className="px-6 py-4 text-center"><Check className="w-4 h-4 mx-auto text-accent" /></td>
+                  </tr>
+                  <tr className="hover:bg-card/60 transition-colors">
+                    <td className="px-6 py-4 text-foreground/90">Napisanie angażującego copywritingu dla OOH</td>
+                    <td className="px-6 py-4 text-center text-muted-foreground">-</td>
+                    <td className="px-6 py-4 text-center"><Check className="w-4 h-4 mx-auto text-primary" /></td>
+                    <td className="px-6 py-4 text-center"><Check className="w-4 h-4 mx-auto text-accent" /></td>
+                  </tr>
+                  <tr className="hover:bg-card/60 transition-colors">
+                    <td className="px-6 py-4 text-foreground/90">Zarządzanie leadami z formularzy na telefon</td>
+                    <td className="px-6 py-4 text-center text-muted-foreground">-</td>
+                    <td className="px-6 py-4 text-center"><Check className="w-4 h-4 mx-auto text-primary" /></td>
+                    <td className="px-6 py-4 text-center"><Check className="w-4 h-4 mx-auto text-accent" /></td>
+                  </tr>
+                  <tr className="hover:bg-card/60 transition-colors">
+                    <td className="px-6 py-4 text-foreground/90">Zaawansowany lejek sprzedażowy na stronie</td>
+                    <td className="px-6 py-4 text-center text-muted-foreground">-</td>
+                    <td className="px-6 py-4 text-center"><Check className="w-4 h-4 mx-auto text-primary" /></td>
+                    <td className="px-6 py-4 text-center"><Check className="w-4 h-4 mx-auto text-accent" /></td>
+                  </tr>
+                  <tr className="hover:bg-card/60 transition-colors">
+                    <td className="px-6 py-4 text-foreground/90">Zintegrowana wirtualna mapa lokalizacji billboardów</td>
+                    <td className="px-6 py-4 text-center text-muted-foreground">-</td>
+                    <td className="px-6 py-4 text-center text-muted-foreground">-</td>
+                    <td className="px-6 py-4 text-center"><Check className="w-4 h-4 mx-auto text-accent" /></td>
+                  </tr>
+                  <tr className="hover:bg-card/60 transition-colors bg-card/20">
+                    <td className="px-6 py-4 font-semibold text-foreground">Szybkość wdrożenia</td>
+                    <td className="px-6 py-4 text-center text-muted-foreground font-medium">14 dni</td>
+                    <td className="px-6 py-4 text-center text-primary font-medium">10 dni</td>
+                    <td className="px-6 py-4 text-center text-cyan-400 font-medium">do 72 godzin</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </motion.div>
         </motion.div>
       </section>
 
       {/* Maintenance Section */}
-      <section className="relative px-6 py-16 md:py-24">
+      <section id="utrzymanie" className="relative px-6 py-16 md:py-24">
         <motion.div
           initial="initial"
           whileInView="animate"
@@ -517,7 +644,7 @@ export default function BillboardPage() {
       </section>
 
       {/* CTA Section - Contact */}
-      <section className="relative px-6 py-16 md:py-24">
+      <section id="kontakt" className="relative px-6 py-16 md:py-24">
         <motion.div
           initial="initial"
           whileInView="animate"
@@ -529,34 +656,30 @@ export default function BillboardPage() {
             <div className="p-8 md:p-12 rounded-3xl border border-primary/30 bg-gradient-to-br from-primary/10 via-card to-accent/10 backdrop-blur-sm relative overflow-hidden">
               {/* Decorative glow */}
               <div className="absolute top-0 left-1/2 -translate-x-1/2 w-64 h-32 bg-primary/20 blur-3xl rounded-full" />
-              
+
               <div className="relative">
                 <h2 className="text-2xl md:text-3xl font-bold mb-4">
                   Masz pytania? Chcesz pogadać o szczegółach?
                 </h2>
                 <p className="text-muted-foreground mb-8 max-w-xl mx-auto">
-                  Zadzwoń lub napisz - chętnie odpowiem na wszystkie pytania i pomogę wybrać najlepszą opcję dla Twojego biznesu
+                  Zadzwoń — chętnie odpowiemy na wszystkie pytania i pomożemy wybrać najlepszą opcję dla Twojego biznesu
                 </p>
 
-                <a 
-                  href={PHONE_NUMBER_HREF}
-                  className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-primary text-primary-foreground font-semibold text-lg transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary/25"
-                >
-                  <Phone className="w-5 h-5" />
-                  {PHONE_NUMBER}
-                </a>
-
-                <p className="mt-6 text-sm text-muted-foreground">
-                  Możesz też napisać SMS lub na WhatsApp
-                </p>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  {CONTACTS.map((contact) => (
+                    <a
+                      key={contact.name}
+                      href={contact.href}
+                      className="inline-flex items-center gap-3 px-7 py-4 rounded-full bg-primary text-primary-foreground font-semibold text-lg transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary/25"
+                    >
+                      <Phone className="w-5 h-5" />
+                      {contact.phone}
+                      <span className="text-primary-foreground/70 font-normal">— {contact.name}</span>
+                    </a>
+                  ))}
+                </div>
               </div>
             </div>
-          </motion.div>
-
-          <motion.div variants={fadeInUp} className="mt-8">
-            <p className="text-sm text-muted-foreground">
-              Oferta ważna do <span className="text-foreground font-medium">[data]</span> - potem ceny mogą wzrosnąć
-            </p>
           </motion.div>
         </motion.div>
       </section>
@@ -571,10 +694,24 @@ export default function BillboardPage() {
           className="max-w-7xl mx-auto text-center"
         >
           <p className="text-sm text-muted-foreground">
-            Oferta przygotowana przez <span className="text-foreground font-medium">Billboard</span> - agencję tworzenia stron internetowych
+            Oferta przygotowana przez <span className="text-foreground font-medium">Kamila Tańskiego</span> i <span className="text-foreground font-medium">Leona Bednarskiego</span>
           </p>
         </motion.div>
       </footer>
+      {/* Scroll to Top */}
+      <AnimatePresence>
+        {showScrollTop && (
+          <motion.button
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.8 }}
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            className="fixed bottom-8 right-8 z-50 w-12 h-12 rounded-full bg-primary text-primary-foreground flex items-center justify-center shadow-lg shadow-primary/25 hover:scale-110 transition-transform cursor-pointer"
+          >
+            <ChevronUp className="w-6 h-6" />
+          </motion.button>
+        )}
+      </AnimatePresence>
     </div>
   )
 }

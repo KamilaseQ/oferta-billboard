@@ -9,7 +9,6 @@ const _geistMono = Geist_Mono({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: 'Billboard - Tworzymy strony, które sprzedają',
   description: 'Profesjonalne strony internetowe dla firm z branży reklamy zewnętrznej. Nowoczesny design, szybka realizacja, kompleksowa obsługa.',
-  generator: 'v0.app',
   icons: {
     icon: [
       {
