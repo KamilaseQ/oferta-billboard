@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Check, Zap, Star, Shield, Headphones, RefreshCw, Edit3, PlusCircle, Wrench, Phone, ArrowRight, Globe, Share2, MapPin, Users } from "lucide-react"
+import { Check, Zap, Star, Shield, Headphones, RefreshCw, Edit3, PlusCircle, Wrench, Phone, ArrowRight, Globe, Share2, MapPin, Users, ArrowDown, Database, Handshake, X } from "lucide-react"
 
 // PLACEHOLDER - Twój numer telefonu
 const PHONE_NUMBER = "+48 XXX XXX XXX"
@@ -82,119 +82,204 @@ export default function BillboardPage() {
         </motion.div>
       </section>
 
-      {/* Process Section - Jak to działa */}
+      {/* Process Section - System Graph */}
       <section className="relative px-6 py-16 md:py-24">
         <motion.div
           initial="initial"
           whileInView="animate"
           viewport={{ once: true, margin: "-100px" }}
           variants={staggerContainer}
-          className="max-w-5xl mx-auto"
+          className="max-w-6xl mx-auto"
         >
-          <motion.div variants={fadeInUp} className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Jak zbudujemy Twój system pozyskiwania klientów?</h2>
+          <motion.div variants={fadeInUp} className="text-center mb-8">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Twój system pozyskiwania klientów</h2>
             <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-              Krok po kroku stworzymy maszynę, która będzie generować dla Ciebie zapytania od nowych klientów
+              Zobacz, jak wszystkie elementy współpracują, żeby generować dla Ciebie nowych klientów
             </p>
           </motion.div>
 
-          <div className="relative">
-            {/* Connection line */}
-            <div className="hidden lg:block absolute top-1/2 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-primary/30 to-transparent -translate-y-1/2" />
-
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {/* Step 1 */}
-              <motion.div variants={fadeInUp} className="relative">
-                <div className="p-6 rounded-2xl border border-border bg-card/50 backdrop-blur-sm h-full">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-primary-foreground font-bold">
-                      1
-                    </div>
-                    <Globe className="w-6 h-6 text-primary" />
-                  </div>
-                  <h3 className="text-lg font-semibold mb-2">Strona internetowa</h3>
-                  <p className="text-sm text-muted-foreground">
-                    Tworzymy profesjonalną stronę - Twoje centrum dowodzenia, gdzie kierujemy cały ruch i zbieramy zapytania
-                  </p>
-                  <div className="mt-4 pt-4 border-t border-border">
-                    <span className="text-xs text-primary font-medium">Fundament całego systemu</span>
-                  </div>
-                </div>
-                <div className="hidden lg:flex absolute -right-3 top-1/2 -translate-y-1/2 z-10">
-                  <ArrowRight className="w-6 h-6 text-primary" />
-                </div>
-              </motion.div>
-
-              {/* Step 2 */}
-              <motion.div variants={fadeInUp} className="relative">
-                <div className="p-6 rounded-2xl border border-border bg-card/50 backdrop-blur-sm h-full">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="w-10 h-10 rounded-full bg-primary/80 flex items-center justify-center text-primary-foreground font-bold">
-                      2
-                    </div>
-                    <Share2 className="w-6 h-6 text-primary" />
-                  </div>
-                  <h3 className="text-lg font-semibold mb-2">Social Media</h3>
-                  <p className="text-sm text-muted-foreground">
-                    Wdrażamy profile w mediach społecznościowych, które budują zasięg i kierują ruch na Twoją stronę
-                  </p>
-                  <div className="mt-4 pt-4 border-t border-border">
-                    <span className="text-xs text-primary font-medium">Budowanie zasięgu</span>
-                  </div>
-                </div>
-                <div className="hidden lg:flex absolute -right-3 top-1/2 -translate-y-1/2 z-10">
-                  <ArrowRight className="w-6 h-6 text-primary" />
-                </div>
-              </motion.div>
-
-              {/* Step 3 */}
-              <motion.div variants={fadeInUp} className="relative">
-                <div className="p-6 rounded-2xl border border-border bg-card/50 backdrop-blur-sm h-full">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="w-10 h-10 rounded-full bg-primary/60 flex items-center justify-center text-primary-foreground font-bold">
-                      3
-                    </div>
-                    <MapPin className="w-6 h-6 text-primary" />
-                  </div>
-                  <h3 className="text-lg font-semibold mb-2">Wizytówka Google</h3>
-                  <p className="text-sm text-muted-foreground">
-                    Optymalizujemy wizytówkę Google, żeby klienci szukający billboardów w Twojej okolicy trafiali do Ciebie
-                  </p>
-                  <div className="mt-4 pt-4 border-t border-border">
-                    <span className="text-xs text-primary font-medium">Lokalne wyszukiwania</span>
-                  </div>
-                </div>
-                <div className="hidden lg:flex absolute -right-3 top-1/2 -translate-y-1/2 z-10">
-                  <ArrowRight className="w-6 h-6 text-primary" />
-                </div>
-              </motion.div>
-
-              {/* Step 4 */}
-              <motion.div variants={fadeInUp} className="relative">
-                <div className="p-6 rounded-2xl border border-primary/50 bg-gradient-to-br from-primary/10 to-card/50 backdrop-blur-sm h-full">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center text-primary-foreground font-bold">
-                      4
-                    </div>
-                    <Users className="w-6 h-6 text-primary" />
-                  </div>
-                  <h3 className="text-lg font-semibold mb-2">Twoja baza klientów</h3>
-                  <p className="text-sm text-muted-foreground">
-                    Wszystkie kanały generują zapytania, które trafiają do Twojej bazy - budujesz relacje i sprzedajesz więcej
-                  </p>
-                  <div className="mt-4 pt-4 border-t border-primary/30">
-                    <span className="text-xs text-primary font-medium">Efekt: więcej klientów</span>
-                  </div>
-                </div>
-              </motion.div>
+          {/* Legend */}
+          <motion.div variants={fadeInUp} className="flex flex-wrap justify-center gap-6 mb-12">
+            <div className="flex items-center gap-2">
+              <div className="w-4 h-4 rounded-full bg-red-500/80" />
+              <span className="text-sm text-muted-foreground">Brakuje - do wdrożenia</span>
             </div>
+            <div className="flex items-center gap-2">
+              <div className="w-4 h-4 rounded-full bg-emerald-500/80" />
+              <span className="text-sm text-muted-foreground">Masz - Twoje procesy</span>
+            </div>
+          </motion.div>
+
+          {/* Graph Layout */}
+          <div className="relative">
+            {/* Row 1: Traffic Sources - RED (missing) */}
+            <motion.div variants={fadeInUp} className="grid md:grid-cols-3 gap-6 mb-4">
+              {/* Social Media */}
+              <div className="relative p-5 rounded-2xl border-2 border-red-500/50 bg-red-500/5 backdrop-blur-sm">
+                <div className="absolute -top-3 left-4">
+                  <span className="px-2 py-0.5 text-xs font-bold rounded-full bg-red-500 text-white">BRAKUJE</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 rounded-xl bg-red-500/20 border border-red-500/30 flex items-center justify-center">
+                    <Share2 className="w-6 h-6 text-red-400" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-red-400">Social Media</h3>
+                    <p className="text-xs text-muted-foreground">Klienci z social media</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Empty center for alignment */}
+              <div className="hidden md:block" />
+
+              {/* Google Business */}
+              <div className="relative p-5 rounded-2xl border-2 border-red-500/50 bg-red-500/5 backdrop-blur-sm">
+                <div className="absolute -top-3 left-4">
+                  <span className="px-2 py-0.5 text-xs font-bold rounded-full bg-red-500 text-white">BRAKUJE</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 rounded-xl bg-red-500/20 border border-red-500/30 flex items-center justify-center">
+                    <MapPin className="w-6 h-6 text-red-400" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-red-400">Wizytówka Google</h3>
+                    <p className="text-xs text-muted-foreground">Klienci z wyszukiwarki</p>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Arrows from sources to website */}
+            <motion.div variants={fadeInUp} className="flex justify-center items-center gap-4 my-4">
+              <div className="hidden md:flex items-center">
+                <div className="w-24 h-0.5 bg-gradient-to-r from-red-500/50 to-red-500/80" />
+                <ArrowDown className="w-5 h-5 text-red-500 rotate-[-45deg]" />
+              </div>
+              <div className="flex flex-col items-center">
+                <ArrowDown className="w-6 h-6 text-red-500" />
+                <span className="text-xs text-red-400 mt-1">ruch trafia na</span>
+              </div>
+              <div className="hidden md:flex items-center">
+                <ArrowDown className="w-5 h-5 text-red-500 rotate-[45deg]" />
+                <div className="w-24 h-0.5 bg-gradient-to-l from-red-500/50 to-red-500/80" />
+              </div>
+            </motion.div>
+
+            {/* Row 2: Website - CENTER, RED (missing) */}
+            <motion.div variants={fadeInUp} className="flex justify-center mb-4">
+              <div className="relative w-full max-w-lg">
+                {/* Glow effect for importance */}
+                <div className="absolute -inset-2 rounded-3xl bg-red-500/20 blur-xl" />
+                <div className="relative p-6 rounded-2xl border-2 border-red-500 bg-gradient-to-br from-red-500/10 via-card to-red-500/5 backdrop-blur-sm">
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2">
+                    <span className="px-3 py-1 text-xs font-bold rounded-full bg-red-500 text-white">KLUCZOWY ELEMENT - BRAKUJE</span>
+                  </div>
+                  <div className="flex flex-col items-center text-center pt-2">
+                    <div className="w-16 h-16 rounded-2xl bg-red-500/20 border-2 border-red-500/50 flex items-center justify-center mb-4">
+                      <Globe className="w-8 h-8 text-red-400" />
+                    </div>
+                    <h3 className="text-xl font-bold text-red-400 mb-2">Strona internetowa</h3>
+                    <p className="text-sm text-muted-foreground max-w-sm">
+                      Centrum dowodzenia - tu trafia cały ruch i tu zbierasz zapytania od potencjalnych klientów
+                    </p>
+                    <div className="mt-4 pt-4 border-t border-red-500/30 w-full">
+                      <div className="flex items-center justify-center gap-2 text-red-400">
+                        <X className="w-4 h-4" />
+                        <span className="text-sm font-medium">Bez strony nie masz gdzie kierować ruchu!</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Arrow from website to database */}
+            <motion.div variants={fadeInUp} className="flex flex-col items-center my-4">
+              <ArrowDown className="w-6 h-6 text-primary" />
+              <span className="text-xs text-primary mt-1">zapytania trafiają do</span>
+            </motion.div>
+
+            {/* Row 3: Client's Database - GREEN (has it) */}
+            <motion.div variants={fadeInUp} className="flex justify-center mb-4">
+              <div className="relative p-5 rounded-2xl border-2 border-emerald-500/50 bg-emerald-500/5 backdrop-blur-sm w-full max-w-md">
+                <div className="absolute -top-3 left-4">
+                  <span className="px-2 py-0.5 text-xs font-bold rounded-full bg-emerald-500 text-white">MASZ</span>
+                </div>
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 rounded-xl bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center">
+                    <Database className="w-6 h-6 text-emerald-400" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-emerald-400">Twoja baza klientów</h3>
+                    <p className="text-xs text-muted-foreground">Kontakty i zapytania do obsługi</p>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Arrow from database to processes */}
+            <motion.div variants={fadeInUp} className="flex flex-col items-center my-4">
+              <ArrowDown className="w-6 h-6 text-emerald-500" />
+              <span className="text-xs text-emerald-400 mt-1">obsługujesz przez</span>
+            </motion.div>
+
+            {/* Row 4: Client's Processes - GREEN (has it) */}
+            <motion.div variants={fadeInUp} className="flex justify-center mb-4">
+              <div className="relative p-5 rounded-2xl border-2 border-emerald-500/50 bg-emerald-500/5 backdrop-blur-sm w-full max-w-md">
+                <div className="absolute -top-3 left-4">
+                  <span className="px-2 py-0.5 text-xs font-bold rounded-full bg-emerald-500 text-white">MASZ</span>
+                </div>
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 rounded-xl bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center">
+                    <Users className="w-6 h-6 text-emerald-400" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-emerald-400">Twoje procesy sprzedaży</h3>
+                    <p className="text-xs text-muted-foreground">Kontakt, wycena, negocjacje</p>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Arrow from processes to deal */}
+            <motion.div variants={fadeInUp} className="flex flex-col items-center my-4">
+              <ArrowDown className="w-6 h-6 text-emerald-500" />
+              <span className="text-xs text-emerald-400 mt-1">i finalizujesz</span>
+            </motion.div>
+
+            {/* Row 5: Realization - GREEN (has it) */}
+            <motion.div variants={fadeInUp} className="flex justify-center">
+              <div className="relative p-5 rounded-2xl border-2 border-emerald-500 bg-gradient-to-br from-emerald-500/10 via-card to-emerald-500/5 backdrop-blur-sm w-full max-w-md">
+                <div className="absolute -top-3 left-4">
+                  <span className="px-2 py-0.5 text-xs font-bold rounded-full bg-emerald-500 text-white">MASZ</span>
+                </div>
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 rounded-xl bg-emerald-500/20 border-2 border-emerald-500/50 flex items-center justify-center">
+                    <Handshake className="w-6 h-6 text-emerald-400" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-emerald-400">Realizacja zlecenia</h3>
+                    <p className="text-xs text-muted-foreground">Klient wynajmuje billboard - zarabiasz</p>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
           </div>
 
-          <motion.div variants={fadeInUp} className="mt-12 text-center">
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              Bez strony internetowej nie masz gdzie kierować ruchu z reklam, social media ani wizytówki Google. 
-              <span className="text-foreground font-medium"> Strona to pierwszy i najważniejszy krok.</span>
-            </p>
+          {/* Summary */}
+          <motion.div variants={fadeInUp} className="mt-12 p-6 rounded-2xl border border-primary/30 bg-card/50 backdrop-blur-sm">
+            <div className="text-center">
+              <h3 className="text-xl font-bold mb-3">Strona to brakujące ogniwo</h3>
+              <p className="text-muted-foreground max-w-2xl mx-auto mb-4">
+                Masz doświadczenie, procesy i umiejętności do obsługi klientów. Brakuje Ci tylko miejsca, gdzie możesz ich zbierać. 
+                <span className="text-foreground font-medium"> Strona internetowa to fundament - bez niej social media i wizytówka Google nie mają sensu.</span>
+              </p>
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/30">
+                <ArrowRight className="w-4 h-4 text-primary" />
+                <span className="text-sm font-medium text-primary">Zaczniemy od strony. Jak będzie gotowa - wdrożymy resztę systemu.</span>
+              </div>
+            </div>
           </motion.div>
         </motion.div>
       </section>
@@ -366,53 +451,64 @@ export default function BillboardPage() {
           variants={staggerContainer}
           className="max-w-5xl mx-auto"
         >
-          <motion.div
-            variants={fadeInUp}
-            className="relative overflow-hidden rounded-3xl border border-border bg-gradient-to-br from-card via-card/80 to-card/60 backdrop-blur-sm"
-          >
-            {/* Decorative gradient */}
-            <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl from-primary/20 to-transparent rounded-full blur-3xl" />
+          <motion.div variants={fadeInUp} className="text-center mb-10">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Po wdrożeniu - stała opieka</h2>
+            <p className="text-muted-foreground text-lg">Nie zostawiamy Cię samego. Zajmujemy się wszystkim.</p>
+          </motion.div>
 
-            <div className="relative p-8 md:p-12">
-              <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">
-                <div className="flex-1">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="p-2 rounded-xl bg-primary/10 border border-primary/20">
-                      <Shield className="w-6 h-6 text-primary" />
-                    </div>
-                    <h3 className="text-2xl md:text-3xl font-bold">
-                      Utrzymanie i obsługa strony
-                    </h3>
-                  </div>
+          <motion.div variants={fadeInUp} className="relative">
+            {/* Main card */}
+            <div className="relative overflow-hidden rounded-3xl border border-primary/30 bg-gradient-to-br from-primary/5 via-card to-accent/5 backdrop-blur-sm">
+              {/* Decorative elements */}
+              <div className="absolute top-0 left-0 w-32 h-32 bg-primary/10 rounded-full blur-3xl" />
+              <div className="absolute bottom-0 right-0 w-48 h-48 bg-accent/10 rounded-full blur-3xl" />
 
-                  <div className="grid sm:grid-cols-2 gap-4 mt-8">
-                    {[
-                      { icon: Headphones, text: "Stały kontakt i szybka reakcja" },
-                      { icon: RefreshCw, text: "Bieżące aktualizacje strony" },
-                      { icon: Edit3, text: "Edycja treści (oferty, zdjęcia, teksty)" },
-                      { icon: PlusCircle, text: "Dodawanie nowych elementów" },
-                      { icon: Wrench, text: "Pełna opieka techniczna" }
-                    ].map((item, i) => (
-                      <div key={i} className="flex items-center gap-3 text-foreground/80">
-                        <item.icon className="w-5 h-5 text-primary shrink-0" />
-                        <span className="text-sm">{item.text}</span>
+              <div className="relative p-8 md:p-10">
+                {/* Price badge - floating */}
+                <div className="absolute -top-1 right-6 md:right-10">
+                  <div className="relative">
+                    <div className="absolute inset-0 bg-primary/30 blur-lg rounded-2xl" />
+                    <div className="relative px-6 py-4 rounded-b-2xl bg-gradient-to-b from-primary to-accent">
+                      <span className="text-xs text-primary-foreground/80 block text-center">miesięcznie</span>
+                      <div className="flex items-baseline justify-center gap-1">
+                        <span className="text-3xl md:text-4xl font-bold text-primary-foreground">450</span>
+                        <span className="text-lg text-primary-foreground/80">zł</span>
                       </div>
-                    ))}
+                    </div>
                   </div>
-
-                  <p className="mt-8 text-sm text-muted-foreground italic">
-                    Cała obsługa jest po naszej stronie
-                  </p>
                 </div>
 
-                <div className="lg:text-right">
-                  <div className="inline-flex flex-col items-center lg:items-end p-6 rounded-2xl bg-secondary/50 border border-border">
-                    <span className="text-sm text-muted-foreground mb-2">miesięcznie</span>
-                    <div>
-                      <span className="text-4xl md:text-5xl font-bold">450</span>
-                      <span className="text-xl text-muted-foreground ml-2">zł</span>
+                <div className="pr-28 md:pr-0">
+                  <h3 className="text-xl md:text-2xl font-bold mb-2">Utrzymanie i obsługa strony</h3>
+                  <p className="text-sm text-muted-foreground mb-8">Pakiet miesięczny - wszystko w jednej cenie</p>
+                </div>
+
+                {/* Features grid */}
+                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                  {[
+                    { icon: Headphones, title: "Stały kontakt", desc: "Szybka reakcja na Twoje potrzeby" },
+                    { icon: RefreshCw, title: "Aktualizacje", desc: "Bieżące zmiany i ulepszenia" },
+                    { icon: Edit3, title: "Edycja treści", desc: "Oferty, zdjęcia, teksty" },
+                    { icon: PlusCircle, title: "Nowe elementy", desc: "Rozbudowa funkcjonalności" },
+                    { icon: Wrench, title: "Opieka techniczna", desc: "Hosting, domena, certyfikat SSL" },
+                    { icon: Shield, title: "Bezpieczeństwo", desc: "Kopie zapasowe i monitoring" }
+                  ].map((item, i) => (
+                    <div key={i} className="flex items-start gap-3 p-3 rounded-xl bg-card/50 border border-border/50">
+                      <div className="w-10 h-10 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center shrink-0">
+                        <item.icon className="w-5 h-5 text-primary" />
+                      </div>
+                      <div>
+                        <span className="text-sm font-medium text-foreground">{item.title}</span>
+                        <p className="text-xs text-muted-foreground">{item.desc}</p>
+                      </div>
                     </div>
-                  </div>
+                  ))}
+                </div>
+
+                <div className="mt-8 pt-6 border-t border-border/50 text-center">
+                  <p className="text-muted-foreground">
+                    <span className="text-foreground font-medium">Zero stresu</span> - Ty zajmujesz się klientami, my stroną
+                  </p>
                 </div>
               </div>
             </div>
