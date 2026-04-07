@@ -1,7 +1,11 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Check, Zap, Star, Shield, Headphones, RefreshCw, Edit3, PlusCircle, Wrench } from "lucide-react"
+import { Check, Zap, Star, Shield, Headphones, RefreshCw, Edit3, PlusCircle, Wrench, Phone, ArrowRight, Globe, Share2, MapPin, Users } from "lucide-react"
+
+// PLACEHOLDER - Twój numer telefonu
+const PHONE_NUMBER = "+48 XXX XXX XXX"
+const PHONE_NUMBER_HREF = "tel:+48XXXXXXXXX"
 
 const fadeInUp = {
   initial: { opacity: 0, y: 40 },
@@ -38,16 +42,17 @@ export default function BillboardPage() {
           <motion.div variants={fadeInUp} className="mb-6">
             <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-border bg-card/50 text-sm text-muted-foreground backdrop-blur-sm">
               <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-              Agencja tworzenia stron
+              Oferta przygotowana specjalnie dla Ciebie
             </span>
           </motion.div>
 
           <motion.h1
             variants={fadeInUp}
-            className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-6 text-balance"
+            className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6 text-balance"
           >
-            <span className="bg-gradient-to-r from-foreground via-foreground to-primary bg-clip-text text-transparent">
-              Billboard
+            <span className="text-foreground">Cześć, </span>
+            <span className="bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">
+              [Imię Klienta]
             </span>
           </motion.h1>
 
@@ -55,14 +60,14 @@ export default function BillboardPage() {
             variants={fadeInUp}
             className="text-xl md:text-2xl lg:text-3xl font-medium text-foreground/90 mb-4"
           >
-            Tworzymy strony, które sprzedają
+            Przygotowaliśmy dla Ciebie plan na rozwój Twojego biznesu billboardowego
           </motion.p>
 
           <motion.p
             variants={fadeInUp}
             className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto"
           >
-            Sprawdź, co możemy zrobić dla Twojego biznesu
+            Sprawdź, jak możemy pomóc Ci pozyskiwać więcej klientów i budować rozpoznawalność marki
           </motion.p>
 
           {/* Decorative line */}
@@ -77,6 +82,123 @@ export default function BillboardPage() {
         </motion.div>
       </section>
 
+      {/* Process Section - Jak to działa */}
+      <section className="relative px-6 py-16 md:py-24">
+        <motion.div
+          initial="initial"
+          whileInView="animate"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={staggerContainer}
+          className="max-w-5xl mx-auto"
+        >
+          <motion.div variants={fadeInUp} className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Jak zbudujemy Twój system pozyskiwania klientów?</h2>
+            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+              Krok po kroku stworzymy maszynę, która będzie generować dla Ciebie zapytania od nowych klientów
+            </p>
+          </motion.div>
+
+          <div className="relative">
+            {/* Connection line */}
+            <div className="hidden lg:block absolute top-1/2 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-primary/30 to-transparent -translate-y-1/2" />
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {/* Step 1 */}
+              <motion.div variants={fadeInUp} className="relative">
+                <div className="p-6 rounded-2xl border border-border bg-card/50 backdrop-blur-sm h-full">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-primary-foreground font-bold">
+                      1
+                    </div>
+                    <Globe className="w-6 h-6 text-primary" />
+                  </div>
+                  <h3 className="text-lg font-semibold mb-2">Strona internetowa</h3>
+                  <p className="text-sm text-muted-foreground">
+                    Tworzymy profesjonalną stronę - Twoje centrum dowodzenia, gdzie kierujemy cały ruch i zbieramy zapytania
+                  </p>
+                  <div className="mt-4 pt-4 border-t border-border">
+                    <span className="text-xs text-primary font-medium">Fundament całego systemu</span>
+                  </div>
+                </div>
+                <div className="hidden lg:flex absolute -right-3 top-1/2 -translate-y-1/2 z-10">
+                  <ArrowRight className="w-6 h-6 text-primary" />
+                </div>
+              </motion.div>
+
+              {/* Step 2 */}
+              <motion.div variants={fadeInUp} className="relative">
+                <div className="p-6 rounded-2xl border border-border bg-card/50 backdrop-blur-sm h-full">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-10 h-10 rounded-full bg-primary/80 flex items-center justify-center text-primary-foreground font-bold">
+                      2
+                    </div>
+                    <Share2 className="w-6 h-6 text-primary" />
+                  </div>
+                  <h3 className="text-lg font-semibold mb-2">Social Media</h3>
+                  <p className="text-sm text-muted-foreground">
+                    Wdrażamy profile w mediach społecznościowych, które budują zasięg i kierują ruch na Twoją stronę
+                  </p>
+                  <div className="mt-4 pt-4 border-t border-border">
+                    <span className="text-xs text-primary font-medium">Budowanie zasięgu</span>
+                  </div>
+                </div>
+                <div className="hidden lg:flex absolute -right-3 top-1/2 -translate-y-1/2 z-10">
+                  <ArrowRight className="w-6 h-6 text-primary" />
+                </div>
+              </motion.div>
+
+              {/* Step 3 */}
+              <motion.div variants={fadeInUp} className="relative">
+                <div className="p-6 rounded-2xl border border-border bg-card/50 backdrop-blur-sm h-full">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-10 h-10 rounded-full bg-primary/60 flex items-center justify-center text-primary-foreground font-bold">
+                      3
+                    </div>
+                    <MapPin className="w-6 h-6 text-primary" />
+                  </div>
+                  <h3 className="text-lg font-semibold mb-2">Wizytówka Google</h3>
+                  <p className="text-sm text-muted-foreground">
+                    Optymalizujemy wizytówkę Google, żeby klienci szukający billboardów w Twojej okolicy trafiali do Ciebie
+                  </p>
+                  <div className="mt-4 pt-4 border-t border-border">
+                    <span className="text-xs text-primary font-medium">Lokalne wyszukiwania</span>
+                  </div>
+                </div>
+                <div className="hidden lg:flex absolute -right-3 top-1/2 -translate-y-1/2 z-10">
+                  <ArrowRight className="w-6 h-6 text-primary" />
+                </div>
+              </motion.div>
+
+              {/* Step 4 */}
+              <motion.div variants={fadeInUp} className="relative">
+                <div className="p-6 rounded-2xl border border-primary/50 bg-gradient-to-br from-primary/10 to-card/50 backdrop-blur-sm h-full">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center text-primary-foreground font-bold">
+                      4
+                    </div>
+                    <Users className="w-6 h-6 text-primary" />
+                  </div>
+                  <h3 className="text-lg font-semibold mb-2">Twoja baza klientów</h3>
+                  <p className="text-sm text-muted-foreground">
+                    Wszystkie kanały generują zapytania, które trafiają do Twojej bazy - budujesz relacje i sprzedajesz więcej
+                  </p>
+                  <div className="mt-4 pt-4 border-t border-primary/30">
+                    <span className="text-xs text-primary font-medium">Efekt: więcej klientów</span>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+
+          <motion.div variants={fadeInUp} className="mt-12 text-center">
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Bez strony internetowej nie masz gdzie kierować ruchu z reklam, social media ani wizytówki Google. 
+              <span className="text-foreground font-medium"> Strona to pierwszy i najważniejszy krok.</span>
+            </p>
+          </motion.div>
+        </motion.div>
+      </section>
+
       {/* Pricing Section */}
       <section className="relative px-6 py-16 md:py-24">
         <motion.div
@@ -87,8 +209,8 @@ export default function BillboardPage() {
           className="max-w-7xl mx-auto"
         >
           <motion.div variants={fadeInUp} className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Wybierz swój pakiet</h2>
-            <p className="text-muted-foreground text-lg">Dopasuj ofertę do swoich potrzeb</p>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Wybierz pakiet dla siebie</h2>
+            <p className="text-muted-foreground text-lg">Zaczynamy od strony - wybierz wariant, który najbardziej Ci odpowiada</p>
           </motion.div>
 
           <div className="grid md:grid-cols-3 gap-6 lg:gap-8 items-stretch">
@@ -298,24 +420,62 @@ export default function BillboardPage() {
         </motion.div>
       </section>
 
+      {/* CTA Section - Contact */}
+      <section className="relative px-6 py-16 md:py-24">
+        <motion.div
+          initial="initial"
+          whileInView="animate"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={staggerContainer}
+          className="max-w-3xl mx-auto text-center"
+        >
+          <motion.div variants={fadeInUp}>
+            <div className="p-8 md:p-12 rounded-3xl border border-primary/30 bg-gradient-to-br from-primary/10 via-card to-accent/10 backdrop-blur-sm relative overflow-hidden">
+              {/* Decorative glow */}
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-64 h-32 bg-primary/20 blur-3xl rounded-full" />
+              
+              <div className="relative">
+                <h2 className="text-2xl md:text-3xl font-bold mb-4">
+                  Masz pytania? Chcesz pogadać o szczegółach?
+                </h2>
+                <p className="text-muted-foreground mb-8 max-w-xl mx-auto">
+                  Zadzwoń lub napisz - chętnie odpowiem na wszystkie pytania i pomogę wybrać najlepszą opcję dla Twojego biznesu
+                </p>
+
+                <a 
+                  href={PHONE_NUMBER_HREF}
+                  className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-primary text-primary-foreground font-semibold text-lg transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary/25"
+                >
+                  <Phone className="w-5 h-5" />
+                  {PHONE_NUMBER}
+                </a>
+
+                <p className="mt-6 text-sm text-muted-foreground">
+                  Możesz też napisać SMS lub na WhatsApp
+                </p>
+              </div>
+            </div>
+          </motion.div>
+
+          <motion.div variants={fadeInUp} className="mt-8">
+            <p className="text-sm text-muted-foreground">
+              Oferta ważna do <span className="text-foreground font-medium">[data]</span> - potem ceny mogą wzrosnąć
+            </p>
+          </motion.div>
+        </motion.div>
+      </section>
+
       {/* Footer */}
-      <footer className="relative px-6 py-12 border-t border-border">
+      <footer className="relative px-6 py-8 border-t border-border">
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4"
+          className="max-w-7xl mx-auto text-center"
         >
-          <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center">
-              <span className="text-sm font-bold text-white">B</span>
-            </div>
-            <span className="text-xl font-bold">Billboard</span>
-          </div>
-
           <p className="text-sm text-muted-foreground">
-            © {new Date().getFullYear()} Billboard. Wszystkie prawa zastrzeżone.
+            Oferta przygotowana przez <span className="text-foreground font-medium">Billboard</span> - agencję tworzenia stron internetowych
           </p>
         </motion.div>
       </footer>
