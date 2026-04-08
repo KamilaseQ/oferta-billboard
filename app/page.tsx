@@ -158,14 +158,14 @@ export default function BillboardPage() {
             variants={fadeInUp}
             className="text-xl md:text-2xl lg:text-3xl font-medium text-foreground/90 mb-4"
           >
-            Przygotowaliśmy dla Ciebie plan na rozwój Twojego biznesu billboardowego
+            Przygotowaliśmy dla Ciebie plan na rozwój Twojego biznesu billboardowego.
           </motion.p>
 
           <motion.p
             variants={fadeInUp}
             className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto"
           >
-            Sprawdź, jak możemy pomóc Ci pozyskiwać więcej klientów i budować rozpoznawalność marki
+            Sprawdź, jak możemy pomóc Ci pozyskiwać więcej klientów i budować rozpoznawalność marki.
           </motion.p>
 
           {/* CTA Button */}
@@ -207,25 +207,35 @@ export default function BillboardPage() {
           <motion.div variants={fadeInUp} className="text-center mb-8">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Twój system pozyskiwania klientów</h2>
             <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-              Zobacz, jak wszystkie elementy współpracują, żeby generować dla Ciebie nowych klientów
+              Zobacz, jak wszystkie elementy współpracują, żeby generować dla Ciebie nowych klientów.
             </p>
           </motion.div>
 
-          {/* New Modern Pipeline Layout */}
+          {/* Modern Pipeline Layout */}
           <div className="relative max-w-3xl mx-auto py-12">
-            {/* Main connecting spine */}
-            <div className="absolute left-[39px] md:left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-red-500/50 via-primary/50 to-emerald-500/50 rounded-full md:-translate-x-1/2 z-0" />
+            {/* Main connecting spine - thicker with glow */}
+            <div className="absolute left-[28px] md:left-1/2 top-0 bottom-0 w-[3px] md:-translate-x-1/2 z-0">
+              <div className="absolute inset-0 bg-gradient-to-b from-emerald-500/60 via-red-500/60 to-emerald-500/60 rounded-full" />
+              <div className="absolute inset-0 bg-gradient-to-b from-emerald-500/30 via-red-500/30 to-emerald-500/30 rounded-full blur-md" />
+            </div>
 
             {/* Step 1: Default sources (Have) */}
             <motion.div variants={fadeInUp} className="relative z-10 flex flex-col md:flex-row items-center mb-12 md:mb-20">
-              <div className="w-full md:w-1/2 ml-20 md:ml-0 pr-0 md:pr-12 text-left md:text-right order-2 md:order-1 mt-4 md:mt-0">
-                <h3 className="text-xl font-bold text-emerald-500 mb-2">Stare bazy klientów (Masz)</h3>
-                <p className="text-sm text-muted-foreground bg-card/60 p-4 rounded-xl border border-emerald-500/20 backdrop-blur-sm">
-                  Działasz na poleceniach i opierasz się na starych kontaktach. Dzwonisz lub piszesz do firm, które znają już Twoje nośniki i realizowały z Tobą zlecenia w ubiegłym roku. To stabilny, ale wolno rosnący kanał.
-                </p>
+              <div className="w-full md:w-1/2 pl-[60px] md:pl-0 pr-0 md:pr-12 text-left md:text-right order-2 md:order-1 mt-4 md:mt-0">
+                <div className="flex items-center gap-2 mb-2 md:justify-end">
+                  <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider rounded-full bg-emerald-500/15 text-emerald-400 border border-emerald-500/25">
+                    <Check className="w-3 h-3" /> Masz
+                  </span>
+                </div>
+                <h3 className="text-xl font-bold text-emerald-400 mb-2">Stare bazy klientów</h3>
+                <div className="p-4 rounded-xl bg-card/60 border border-emerald-500/20 backdrop-blur-md transition-all duration-300 hover:bg-card/80 hover:border-emerald-500/35 hover:shadow-[0_4px_20px_rgba(16,185,129,0.08)] hover:-translate-y-0.5">
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    Działasz na poleceniach i opierasz się na starych kontaktach. Dzwonisz lub piszesz do firm, które znają już Twoje nośniki i realizowały z Tobą zlecenia w ubiegłym roku. To stabilny, ale wolno rosnący kanał.
+                  </p>
+                </div>
               </div>
-              <div className="absolute left-4 md:left-1/2 w-12 h-12 rounded-full bg-background border-4 border-emerald-500 flex items-center justify-center -translate-x-1/2 shadow-[0_0_15px_rgba(16,185,129,0.3)] z-20">
-                <Users className="w-5 h-5 text-emerald-500" />
+              <div className="absolute left-[4px] md:left-1/2 w-12 h-12 rounded-full bg-gradient-to-br from-emerald-500/20 to-emerald-600/10 border-[3px] border-emerald-500 flex items-center justify-center md:-translate-x-1/2 shadow-[0_0_20px_rgba(16,185,129,0.35)] z-20 backdrop-blur-sm">
+                <Users className="w-5 h-5 text-emerald-400" />
               </div>
               <div className="w-full md:w-1/2 md:pl-12 order-3" />
             </motion.div>
@@ -233,99 +243,145 @@ export default function BillboardPage() {
             {/* Step 2: Social Media (Missing) */}
             <motion.div variants={fadeInUp} className="relative z-10 flex flex-col md:flex-row items-center mb-12 md:mb-20">
               <div className="w-full md:w-1/2 pr-12 order-1 hidden md:block" />
-              <div className="absolute left-4 md:left-1/2 w-12 h-12 rounded-full bg-background border-4 border-red-500 flex items-center justify-center -translate-x-1/2 shadow-[0_0_15px_rgba(239,68,68,0.3)] z-20">
-                <Share2 className="w-5 h-5 text-red-500" />
+              <div className="absolute left-[4px] md:left-1/2 w-12 h-12 rounded-full bg-gradient-to-br from-red-500/20 to-red-600/10 border-[3px] border-red-500 flex items-center justify-center md:-translate-x-1/2 shadow-[0_0_20px_rgba(239,68,68,0.35)] z-20 backdrop-blur-sm">
+                <Share2 className="w-5 h-5 text-red-400" />
               </div>
-              <div className="w-full md:w-1/2 ml-20 md:ml-0 pl-0 md:pl-12 order-2 text-left">
-                <h3 className="text-xl font-bold text-red-500 mb-2">Social Media (Brak)</h3>
-                <p className="text-sm text-muted-foreground bg-card/60 p-4 rounded-xl border border-red-500/20 backdrop-blur-sm">
-                  Tracisz ogromny potencjał darmowego ruchu. Na Facebooku i Instagramie mógłbyś budować rozpoznawalność marki w Twoim regionie i przypominać o sobie lokalnym firmom.
-                </p>
+              <div className="w-full md:w-1/2 pl-[60px] md:pl-12 order-2 text-left">
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider rounded-full bg-red-500/15 text-red-400 border border-red-500/25">
+                    <X className="w-3 h-3" /> Brak
+                  </span>
+                </div>
+                <h3 className="text-xl font-bold text-red-400 mb-2">Social Media</h3>
+                <div className="p-4 rounded-xl bg-card/60 border border-red-500/20 border-dashed backdrop-blur-md transition-all duration-300 hover:bg-card/80 hover:border-red-500/35 hover:shadow-[0_4px_20px_rgba(239,68,68,0.08)] hover:-translate-y-0.5">
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    Tracisz ogromny potencjał darmowego ruchu. Na platformach takich jak Facebook, Instagram czy TikTok mógłbyś budować rozpoznawalność marki i przypominać o sobie firmom.
+                  </p>
+                </div>
               </div>
             </motion.div>
 
-            {/* Strzałeczka pomiedzy krokami */}
-            <div className="flex justify-center mb-10 mt-[-10px] hidden md:flex relative z-10">
-              <ArrowDown className="w-6 h-6 text-red-500 animate-bounce" />
+            {/* Animated connector */}
+            <div className="hidden md:flex justify-center mb-10 mt-[-10px] relative z-10">
+              <motion.div animate={{ y: [0, 6, 0] }} transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}>
+                <ArrowDown className="w-5 h-5 text-red-500/70" />
+              </motion.div>
             </div>
 
             {/* Step 3: Google (Missing) */}
             <motion.div variants={fadeInUp} className="relative z-10 flex flex-col md:flex-row items-center mb-12 md:mb-20">
-              <div className="w-full md:w-1/2 ml-20 md:ml-0 pr-0 md:pr-12 text-left md:text-right order-2 md:order-1 mt-4 md:mt-0">
-                <h3 className="text-xl font-bold text-red-500 mb-2">Wizytówka Google & SEO (Brak)</h3>
-                <p className="text-sm text-muted-foreground bg-card/60 p-4 rounded-xl border border-red-500/20 backdrop-blur-sm">
-                  Ponad 80% nowych firm wpisuje w wyszukiwarkę "wynajem billboardu [miasto]". Bez optymalizacji, ten ruch trafia ucieka do Twojej konkurencji.
-                </p>
+              <div className="w-full md:w-1/2 pl-[60px] md:pl-0 pr-0 md:pr-12 text-left md:text-right order-2 md:order-1 mt-4 md:mt-0">
+                <div className="flex items-center gap-2 mb-2 md:justify-end">
+                  <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider rounded-full bg-red-500/15 text-red-400 border border-red-500/25">
+                    <X className="w-3 h-3" /> Brak
+                  </span>
+                </div>
+                <h3 className="text-xl font-bold text-red-400 mb-2">Wizytówka Google &amp; SEO</h3>
+                <div className="p-4 rounded-xl bg-card/60 border border-red-500/20 border-dashed backdrop-blur-md transition-all duration-300 hover:bg-card/80 hover:border-red-500/35 hover:shadow-[0_4px_20px_rgba(239,68,68,0.08)] hover:-translate-y-0.5">
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    Znaczna większość nowych firm wpisuje w wyszukiwarkę "wynajem billboardu [miasto]". Bez optymalizacji, ten ruch trafia do Twojej konkurencji.
+                  </p>
+                </div>
               </div>
-              <div className="absolute left-4 md:left-1/2 w-12 h-12 rounded-full bg-background border-4 border-red-500 flex items-center justify-center -translate-x-1/2 shadow-[0_0_15px_rgba(239,68,68,0.3)] z-20">
-                <MapPin className="w-5 h-5 text-red-500" />
+              <div className="absolute left-[4px] md:left-1/2 w-12 h-12 rounded-full bg-gradient-to-br from-red-500/20 to-red-600/10 border-[3px] border-red-500 flex items-center justify-center md:-translate-x-1/2 shadow-[0_0_20px_rgba(239,68,68,0.35)] z-20 backdrop-blur-sm">
+                <MapPin className="w-5 h-5 text-red-400" />
               </div>
               <div className="w-full md:w-1/2 md:pl-12 order-3" />
             </motion.div>
 
-            {/* Strzałeczka do najważniejszego kroku */}
-            <div className="flex justify-center mb-10 mt-[-10px] hidden md:flex relative z-10">
-              <ArrowDown className="w-6 h-6 text-red-500 animate-bounce" />
+            {/* Animated connector to website */}
+            <div className="hidden md:flex justify-center mb-10 mt-[-10px] relative z-10">
+              <motion.div animate={{ y: [0, 6, 0] }} transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut", delay: 0.3 }}>
+                <ArrowDown className="w-5 h-5 text-red-500/70" />
+              </motion.div>
             </div>
 
-            {/* Step 3: Website (Critical Missing Hub) */}
+            {/* Step: Website (Critical Missing Hub) */}
             <motion.div variants={fadeInUp} className="relative z-10 flex flex-col md:flex-row items-center mb-16 md:mb-24">
-              <div className="w-full md:w-1/2 ml-20 md:ml-0 pr-0 md:pr-12 text-left md:text-right order-2 md:order-1 mt-6 md:mt-0 relative">
-                {/* Visual cue to center line */}
-                <div className="hidden md:block absolute right-0 top-1/2 -translate-y-1/2 w-24 h-1 bg-gradient-to-l from-red-500/80 to-transparent" />
+              <div className="w-full md:w-1/2 pl-[60px] md:pl-0 pr-0 md:pr-12 text-left md:text-right order-2 md:order-1 mt-6 md:mt-0 relative">
+                {/* Visual connector to spine */}
+                <div className="hidden md:block absolute right-0 top-1/2 -translate-y-1/2 w-24 h-[2px] bg-gradient-to-l from-red-500/70 to-transparent" />
 
-                <div className="inline-block px-4 py-1.5 mb-3 text-xs font-bold rounded-full bg-red-500/20 text-red-400 border border-red-500/50 animate-pulse uppercase tracking-wider relative top-[-10px]">
-                  Brakujące ogniwo - Fundament w sieci
+                <div className="inline-block px-4 py-1.5 mb-3 text-[10px] font-bold rounded-full bg-red-500/20 text-red-400 border border-red-500/50 animate-pulse uppercase tracking-widest relative top-[-10px]">
+                  Brakujące ogniwo - kluczowy element
                 </div>
-                <h3 className="text-3xl font-extrabold text-foreground mb-3 tracking-tight">Strona Internetowa</h3>
-                <p className="text-base text-foreground bg-red-500/10 p-5 rounded-xl border-2 border-red-500/40 backdrop-blur-md shadow-[0_0_30px_rgba(239,68,68,0.15)]">
-                  <strong>Bezwzględne centrum dowodzenia.</strong> To tutaj starzy klienci wchodzą sprawdzić nowe lokalizacje billboardów, a zupełnie nowy ruch z wyszukiwarki zmienia się w gorące zapytania (leady) wysyłane wprost na Twój telefon.
-                </p>
+                <h3 className="text-2xl md:text-3xl font-extrabold text-foreground mb-3 tracking-tight">Strona Internetowa</h3>
+                <div className="p-5 rounded-xl bg-gradient-to-br from-red-500/10 to-red-500/5 border-2 border-red-500/30 backdrop-blur-md shadow-[0_0_35px_rgba(239,68,68,0.1)] transition-all duration-300 hover:border-red-500/50 hover:shadow-[0_0_50px_rgba(239,68,68,0.15)]">
+                  <p className="text-base text-foreground leading-relaxed">
+                    <strong>Bezwzględne centrum dowodzenia.</strong> To tutaj starzy klienci wchodzą sprawdzić nowe lokalizacje billboardów, a zupełnie nowy ruch z wyszukiwarki zmienia się w gorące zapytania (leady) wysyłane wprost na Twój telefon.
+                  </p>
+                </div>
               </div>
-              <div className="absolute left-4 md:left-1/2 w-20 h-20 rounded-full bg-background border-[5px] border-red-500 flex items-center justify-center -translate-x-1/2 shadow-[0_0_50px_rgba(239,68,68,0.6)] z-20 overflow-hidden">
-                <div className="absolute inset-0 bg-red-500/20 animate-ping rounded-full" />
-                <Globe className="w-10 h-10 text-red-500 relative z-10" />
+              <div className="absolute left-0 md:left-1/2 w-14 h-14 md:w-20 md:h-20 rounded-full md:-translate-x-1/2 z-20">
+                {/* Outer ring with glow */}
+                <div className="absolute inset-0 rounded-full border-[3px] border-red-500/40 animate-ping" style={{ animationDuration: '2.5s' }} />
+                <div className="absolute -inset-1 rounded-full bg-red-500/15 blur-md" />
+                {/* Main circle */}
+                <div className="relative w-full h-full rounded-full bg-gradient-to-br from-red-500/25 to-red-600/15 border-[4px] border-red-500 flex items-center justify-center shadow-[0_0_40px_rgba(239,68,68,0.5)] backdrop-blur-sm overflow-hidden">
+                  <Globe className="w-6 h-6 md:w-9 md:h-9 text-red-500 relative z-10" />
+                </div>
               </div>
               <div className="w-full md:w-1/2 md:pl-12 order-3" />
             </motion.div>
 
-            {/* Step 3: Baza (Have) */}
+            {/* Step: Baza klientów (Have) */}
             <motion.div variants={fadeInUp} className="relative z-10 flex flex-col md:flex-row items-center mb-12 md:mb-20">
-              <div className="w-full md:w-1/2 ml-20 md:ml-0 pr-0 md:pr-12 text-left md:text-right order-2 md:order-1 mt-4 md:mt-0">
-                <h3 className="text-xl font-bold text-emerald-500 mb-2">Baza klientów (Masz)</h3>
-                <p className="text-sm text-muted-foreground bg-card/60 p-4 rounded-xl border border-emerald-500/20 backdrop-blur-sm">
-                  Zapytania ze strony trafiają wprost do Ciebie (na maila i telefon), łącząc się z Twoją istniejącą wiedzą o obsłudze klienta.
-                </p>
+              <div className="w-full md:w-1/2 pl-[60px] md:pl-0 pr-0 md:pr-12 text-left md:text-right order-2 md:order-1 mt-4 md:mt-0">
+                <div className="flex items-center gap-2 mb-2 md:justify-end">
+                  <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider rounded-full bg-emerald-500/15 text-emerald-400 border border-emerald-500/25">
+                    <Check className="w-3 h-3" /> Masz
+                  </span>
+                </div>
+                <h3 className="text-xl font-bold text-emerald-400 mb-2">Baza klientów</h3>
+                <div className="p-4 rounded-xl bg-card/60 border border-emerald-500/20 backdrop-blur-md transition-all duration-300 hover:bg-card/80 hover:border-emerald-500/35 hover:shadow-[0_4px_20px_rgba(16,185,129,0.08)] hover:-translate-y-0.5">
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    Zapytania ze strony trafiają wprost do Ciebie (na maila i telefon), łącząc się z Twoją istniejącą wiedzą o obsłudze klienta.
+                  </p>
+                </div>
               </div>
-              <div className="absolute left-4 md:left-1/2 w-12 h-12 rounded-full bg-background border-4 border-emerald-500 flex items-center justify-center -translate-x-1/2 shadow-[0_0_15px_rgba(16,185,129,0.3)] z-20">
-                <Database className="w-5 h-5 text-emerald-500" />
+              <div className="absolute left-[4px] md:left-1/2 w-12 h-12 rounded-full bg-gradient-to-br from-emerald-500/20 to-emerald-600/10 border-[3px] border-emerald-500 flex items-center justify-center md:-translate-x-1/2 shadow-[0_0_20px_rgba(16,185,129,0.35)] z-20 backdrop-blur-sm">
+                <Database className="w-5 h-5 text-emerald-400" />
               </div>
               <div className="w-full md:w-1/2 md:pl-12 order-3" />
             </motion.div>
 
-            {/* Step 4: Procesy (Have) */}
+            {/* Step: Negocjacje (Have) */}
             <motion.div variants={fadeInUp} className="relative z-10 flex flex-col md:flex-row items-center mb-12 md:mb-20">
               <div className="w-full md:w-1/2 pr-12 order-1 hidden md:block" />
-              <div className="absolute left-4 md:left-1/2 w-12 h-12 rounded-full bg-background border-4 border-emerald-500 flex items-center justify-center -translate-x-1/2 shadow-[0_0_15px_rgba(16,185,129,0.3)] z-20">
-                <Users className="w-5 h-5 text-emerald-500" />
+              <div className="absolute left-[4px] md:left-1/2 w-12 h-12 rounded-full bg-gradient-to-br from-emerald-500/20 to-emerald-600/10 border-[3px] border-emerald-500 flex items-center justify-center md:-translate-x-1/2 shadow-[0_0_20px_rgba(16,185,129,0.35)] z-20 backdrop-blur-sm">
+                <Users className="w-5 h-5 text-emerald-400" />
               </div>
-              <div className="w-full md:w-1/2 ml-20 md:ml-0 pl-0 md:pl-12 order-2 text-left">
-                <h3 className="text-xl font-bold text-emerald-500 mb-2">Negocjacje (Masz)</h3>
-                <p className="text-sm text-muted-foreground bg-card/60 p-4 rounded-xl border border-emerald-500/20 backdrop-blur-sm">
-                  Korzystasz z wypracowanych procesów. Oceniasz leady, wyceniasz kampanie i domykasz sprzedaż.
-                </p>
+              <div className="w-full md:w-1/2 pl-[60px] md:pl-12 order-2 text-left">
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider rounded-full bg-emerald-500/15 text-emerald-400 border border-emerald-500/25">
+                    <Check className="w-3 h-3" /> Masz
+                  </span>
+                </div>
+                <h3 className="text-xl font-bold text-emerald-400 mb-2">Negocjacje</h3>
+                <div className="p-4 rounded-xl bg-card/60 border border-emerald-500/20 backdrop-blur-md transition-all duration-300 hover:bg-card/80 hover:border-emerald-500/35 hover:shadow-[0_4px_20px_rgba(16,185,129,0.08)] hover:-translate-y-0.5">
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    Korzystasz z wypracowanych procesów. Oceniasz leady, wyceniasz kampanie i domykasz sprzedaż.
+                  </p>
+                </div>
               </div>
             </motion.div>
 
-            {/* Step 5: Wynajem (Have) */}
+            {/* Step: Realizacja (Have) */}
             <motion.div variants={fadeInUp} className="relative z-10 flex flex-col md:flex-row items-center">
-              <div className="w-full md:w-1/2 ml-20 md:ml-0 pr-0 md:pr-12 text-left md:text-right order-2 md:order-1 mt-4 md:mt-0">
-                <h3 className="text-2xl font-bold text-emerald-500 mb-2">Realizacja!</h3>
-                <p className="text-sm text-muted-foreground bg-emerald-500/5 p-4 rounded-xl border border-emerald-500/30 backdrop-blur-sm">
-                  Biznes rośnie. Wynajmujesz kolejne powierzchnie, bo masz ciągły dopływ nowych kontaktów, o który dba nowa strona.
-                </p>
+              <div className="w-full md:w-1/2 pl-[60px] md:pl-0 pr-0 md:pr-12 text-left md:text-right order-2 md:order-1 mt-4 md:mt-0">
+                <div className="flex items-center gap-2 mb-2 md:justify-end">
+                  <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider rounded-full bg-emerald-500/15 text-emerald-400 border border-emerald-500/25">
+                    <Check className="w-3 h-3" /> Masz
+                  </span>
+                </div>
+                <h3 className="text-2xl font-bold text-emerald-400 mb-2">Realizacja!</h3>
+                <div className="p-4 rounded-xl bg-emerald-500/5 border border-emerald-500/25 backdrop-blur-md transition-all duration-300 hover:bg-emerald-500/10 hover:border-emerald-500/40 hover:shadow-[0_4px_20px_rgba(16,185,129,0.1)] hover:-translate-y-0.5">
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    Biznes rośnie. Wynajmujesz kolejne powierzchnie, bo masz ciągły dopływ nowych kontaktów, o który dba nowa strona.
+                  </p>
+                </div>
               </div>
-              <div className="absolute left-4 md:left-1/2 w-16 h-16 rounded-full bg-emerald-950 border-4 border-emerald-500 flex items-center justify-center -translate-x-1/2 shadow-[0_0_30px_rgba(16,185,129,0.5)] z-20">
+              <div className="absolute left-[2px] md:left-1/2 w-14 h-14 md:w-16 md:h-16 rounded-full bg-gradient-to-br from-emerald-500/25 to-emerald-600/15 border-[3px] border-emerald-500 flex items-center justify-center md:-translate-x-1/2 shadow-[0_0_30px_rgba(16,185,129,0.45)] z-20 backdrop-blur-sm">
                 <Handshake className="w-6 h-6 text-emerald-400" />
               </div>
               <div className="w-full md:w-1/2 md:pl-12 order-3" />
@@ -337,7 +393,7 @@ export default function BillboardPage() {
             <div className="text-center">
               <h3 className="text-xl font-bold mb-3">Strona to brakujące ogniwo</h3>
               <p className="text-muted-foreground max-w-2xl mx-auto mb-4">
-                Masz doświadczenie, procesy i umiejętności do obsługi klientów. Brakuje Ci tylko miejsca, gdzie możesz ich zbierać.
+                Masz doświadczenie, procesy i umiejętności do obsługi klientów. Brakuje Ci miejsca, gdzie możesz ich zbierać.
                 <span className="text-foreground font-medium"> Strona internetowa to fundament - bez niej social media i wizytówka Google nie mają sensu.</span>
               </p>
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/30">
@@ -360,19 +416,21 @@ export default function BillboardPage() {
         >
           <motion.div variants={fadeInUp} className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Wybierz pakiet dla siebie</h2>
-            <p className="text-muted-foreground text-lg">Zaczynamy od strony - wybierz wariant, który najbardziej Ci odpowiada</p>
+            <p className="text-muted-foreground text-lg">Zaczynamy od strony - wybierz wariant, który najbardziej Ci odpowiada.</p>
           </motion.div>
 
           <div className="grid md:grid-cols-3 gap-6 lg:gap-8 items-stretch">
             {/* START Card */}
             <motion.div
               variants={fadeInUp}
-              className="group relative"
+              whileHover={{ y: -6, transition: { duration: 0.25, ease: "easeOut" } }}
+              className="group relative cursor-pointer"
             >
-              <div className="relative h-full p-8 rounded-2xl border border-border bg-card/50 backdrop-blur-sm transition-all duration-300 hover:border-primary/50 hover:bg-card/70">
+              <div className="absolute -inset-px rounded-2xl bg-gradient-to-b from-border/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-[2px]" />
+              <div className="relative h-full p-8 rounded-2xl border border-border bg-card/50 backdrop-blur-sm transition-all duration-300 group-hover:border-primary/50 group-hover:bg-card/80 group-hover:shadow-[0_16px_48px_rgba(0,0,0,0.25)]">
                 <div className="mb-6">
                   <span className="inline-block px-3 py-1 text-sm font-semibold rounded-full bg-secondary text-secondary-foreground">
-                    START
+                    PODSTAWOWY
                   </span>
                 </div>
 
@@ -400,34 +458,25 @@ export default function BillboardPage() {
                       <span>{feature}</span>
                     </li>
                   ))}
-                  <li className="flex items-start gap-3 text-sm text-muted-foreground/50">
-                    <X className="w-5 h-5 text-muted-foreground shrink-0 mt-0.5" />
-                    <span className="line-through">System łowienia leadów (autouzupełnianie, SMS)</span>
-                  </li>
-                  <li className="flex items-start gap-3 text-sm text-muted-foreground/50">
-                    <X className="w-5 h-5 text-muted-foreground shrink-0 mt-0.5" />
-                    <span className="line-through">Copywriting zwiększający konwersję</span>
-                  </li>
                 </ul>
               </div>
             </motion.div>
 
-            {/* ROZWÓJ Card - Highlighted */}
+            {/* ROZWÓJ Card */}
             <motion.div
               variants={fadeInUp}
-              className="group relative md:-mt-4 md:mb-[-16px]"
+              whileHover={{ y: -6, transition: { duration: 0.25, ease: "easeOut" } }}
+              className="group relative cursor-pointer"
             >
-              {/* Glow effect */}
-              <div className="absolute -inset-1 rounded-3xl bg-gradient-to-b from-primary via-primary/50 to-accent opacity-75 blur-lg group-hover:opacity-100 transition-opacity duration-300" />
-
-              <div className="relative h-full p-8 rounded-2xl border-2 border-primary bg-card backdrop-blur-sm">
+              <div className="absolute -inset-px rounded-2xl bg-gradient-to-b from-primary/40 to-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-[2px]" />
+              <div className="relative h-full p-8 rounded-2xl border border-primary/50 bg-card/50 backdrop-blur-sm transition-all duration-300 group-hover:border-primary group-hover:bg-card/80 group-hover:shadow-[0_16px_48px_rgba(100,100,255,0.12)]">
                 <div className="mb-6 flex flex-wrap items-center gap-2">
-                  <span className="inline-block px-3 py-1 text-sm font-semibold rounded-full bg-primary text-primary-foreground">
+                  <span className="inline-block px-3 py-1 text-sm font-semibold rounded-full bg-primary/20 text-primary border border-primary/30">
                     ROZWÓJ
                   </span>
                   <span className="inline-flex items-center gap-1 px-3 py-1 text-sm font-semibold rounded-full bg-gradient-to-r from-amber-500/20 to-orange-500/20 text-amber-400 border border-amber-500/30">
                     <Star className="w-4 h-4 fill-current" />
-                    REKOMENDOWANA
+                    POPULARNA
                   </span>
                 </div>
 
@@ -458,24 +507,20 @@ export default function BillboardPage() {
                     </li>
                   ))}
                 </ul>
-
-                <div className="mt-8 pt-6 border-t border-border">
-                  <p className="text-sm text-center text-muted-foreground italic">
-                    Największa wartość w stosunku do ceny
-                  </p>
-                </div>
               </div>
             </motion.div>
 
-            {/* EXPRESS Card */}
+            {/* NAJLEPSZY Card */}
             <motion.div
               variants={fadeInUp}
-              className="group relative"
+              whileHover={{ y: -6, transition: { duration: 0.25, ease: "easeOut" } }}
+              className="group relative cursor-pointer"
             >
-              <div className="relative h-full p-8 rounded-2xl border border-border bg-card/50 backdrop-blur-sm transition-all duration-300 hover:border-accent/50 hover:bg-card/70">
+              <div className="absolute -inset-px rounded-2xl bg-gradient-to-b from-accent/40 to-cyan-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-[2px]" />
+              <div className="relative h-full p-8 rounded-2xl border border-accent/50 bg-card/50 backdrop-blur-sm transition-all duration-300 group-hover:border-accent group-hover:bg-card/80 group-hover:shadow-[0_16px_48px_rgba(0,200,255,0.1)]">
                 <div className="mb-6 flex flex-wrap items-center gap-2">
-                  <span className="inline-block px-3 py-1 text-sm font-semibold rounded-full bg-secondary text-secondary-foreground">
-                    EXPRESS
+                  <span className="inline-block px-3 py-1 text-sm font-semibold rounded-full bg-accent/20 text-accent border border-accent/30">
+                    NAJLEPSZY
                   </span>
                   <span className="inline-flex items-center gap-1 px-3 py-1 text-sm font-semibold rounded-full bg-gradient-to-r from-cyan-500/20 to-blue-500/20 text-cyan-400 border border-cyan-500/30">
                     <Zap className="w-4 h-4 fill-current" />
@@ -514,56 +559,151 @@ export default function BillboardPage() {
 
           {/* Setup Table Comparison */}
           <motion.div variants={fadeInUp} className="mt-20 max-w-4xl mx-auto">
-            <h3 className="text-2xl font-bold text-center mb-8">Porównanie funkcji pakietów</h3>
-            <div className="overflow-x-auto rounded-xl border border-border bg-card/40 backdrop-blur-sm">
+            <h3 className="text-2xl font-bold text-center mb-3">Porównanie pakietów</h3>
+            <p className="text-muted-foreground text-center mb-8">Sprawdź, co dokładnie zyskujesz w każdym wariancie.</p>
+            {/* Desktop table */}
+            <div className="hidden md:block rounded-2xl border border-border bg-card/40 backdrop-blur-sm">
               <table className="w-full text-sm text-left">
-                <thead className="text-xs text-muted-foreground uppercase bg-card/50 border-b border-border">
-                  <tr>
-                    <th className="px-6 py-4 font-medium">Funkcjonalność</th>
-                    <th className="px-6 py-4 font-medium text-center">START</th>
-                    <th className="px-6 py-4 font-medium text-center text-primary">ROZWÓJ</th>
-                    <th className="px-6 py-4 font-medium text-center text-accent">EXPRESS</th>
+                <thead>
+                  <tr className="border-b-2 border-border">
+                    <th className="px-6 py-5 font-medium text-xs text-muted-foreground uppercase tracking-wider">Funkcjonalność</th>
+                    <th className="px-6 py-5 text-center">
+                      <span className="inline-block px-3 py-1 text-xs font-semibold rounded-full bg-secondary text-secondary-foreground">PODSTAWOWY</span>
+                    </th>
+                    <th className="px-6 py-5 text-center">
+                      <span className="inline-block px-3 py-1 text-xs font-semibold rounded-full bg-primary/20 text-primary border border-primary/30">ROZWÓJ</span>
+                    </th>
+                    <th className="px-6 py-5 text-center">
+                      <span className="inline-block px-3 py-1 text-xs font-semibold rounded-full bg-accent/20 text-accent border border-accent/30">NAJLEPSZY</span>
+                    </th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-border">
-                  <tr className="hover:bg-card/60 transition-colors">
+                <tbody>
+                  {/* Category: Podstawa */}
+                  <tr className="bg-card/30">
+                    <td colSpan={4} className="px-6 py-3 text-xs font-bold uppercase tracking-wider text-muted-foreground">🔧 Podstawa</td>
+                  </tr>
+                  <tr className="hover:bg-card/60 transition-colors border-b border-border/50">
+                    <td className="px-6 py-4 text-foreground/90">Responsywna strona (mobile + desktop)</td>
+                    <td className="px-6 py-4 text-center"><Check className="w-5 h-5 mx-auto text-emerald-500" /></td>
+                    <td className="px-6 py-4 text-center"><Check className="w-5 h-5 mx-auto text-emerald-500" /></td>
+                    <td className="px-6 py-4 text-center"><Check className="w-5 h-5 mx-auto text-emerald-500" /></td>
+                  </tr>
+                  <tr className="hover:bg-card/60 transition-colors border-b border-border/50">
                     <td className="px-6 py-4 text-foreground/90">Wdrożenie i optymalizacja hostingu</td>
-                    <td className="px-6 py-4 text-center"><Check className="w-4 h-4 mx-auto text-primary" /></td>
-                    <td className="px-6 py-4 text-center"><Check className="w-4 h-4 mx-auto text-primary" /></td>
-                    <td className="px-6 py-4 text-center"><Check className="w-4 h-4 mx-auto text-accent" /></td>
+                    <td className="px-6 py-4 text-center"><Check className="w-5 h-5 mx-auto text-emerald-500" /></td>
+                    <td className="px-6 py-4 text-center"><Check className="w-5 h-5 mx-auto text-emerald-500" /></td>
+                    <td className="px-6 py-4 text-center"><Check className="w-5 h-5 mx-auto text-emerald-500" /></td>
                   </tr>
-                  <tr className="hover:bg-card/60 transition-colors">
-                    <td className="px-6 py-4 text-foreground/90">Napisanie angażującego copywritingu dla OOH</td>
-                    <td className="px-6 py-4 text-center text-muted-foreground">-</td>
-                    <td className="px-6 py-4 text-center"><Check className="w-4 h-4 mx-auto text-primary" /></td>
-                    <td className="px-6 py-4 text-center"><Check className="w-4 h-4 mx-auto text-accent" /></td>
+                  {/* Category: Marketing i sprzedaż */}
+                  <tr className="bg-card/30">
+                    <td colSpan={4} className="px-6 py-3 text-xs font-bold uppercase tracking-wider text-muted-foreground">📈 Marketing i sprzedaż</td>
                   </tr>
-                  <tr className="hover:bg-card/60 transition-colors">
-                    <td className="px-6 py-4 text-foreground/90">Zarządzanie leadami z formularzy na telefon</td>
-                    <td className="px-6 py-4 text-center text-muted-foreground">-</td>
-                    <td className="px-6 py-4 text-center"><Check className="w-4 h-4 mx-auto text-primary" /></td>
-                    <td className="px-6 py-4 text-center"><Check className="w-4 h-4 mx-auto text-accent" /></td>
+                  <tr className="hover:bg-card/60 transition-colors border-b border-border/50">
+                    <td className="px-6 py-4 text-foreground/90">Angażujący copywriting dla branży OOH</td>
+                    <td className="px-6 py-4 text-center"><X className="w-4 h-4 mx-auto text-muted-foreground/40" /></td>
+                    <td className="px-6 py-4 text-center"><Check className="w-5 h-5 mx-auto text-emerald-500" /></td>
+                    <td className="px-6 py-4 text-center"><Check className="w-5 h-5 mx-auto text-emerald-500" /></td>
                   </tr>
-                  <tr className="hover:bg-card/60 transition-colors">
-                    <td className="px-6 py-4 text-foreground/90">Zaawansowany lejek sprzedażowy na stronie</td>
-                    <td className="px-6 py-4 text-center text-muted-foreground">-</td>
-                    <td className="px-6 py-4 text-center"><Check className="w-4 h-4 mx-auto text-primary" /></td>
-                    <td className="px-6 py-4 text-center"><Check className="w-4 h-4 mx-auto text-accent" /></td>
+                  <tr className="hover:bg-card/60 transition-colors border-b border-border/50">
+                    <td className="px-6 py-4 text-foreground/90">Zaawansowany lejek sprzedażowy</td>
+                    <td className="px-6 py-4 text-center"><X className="w-4 h-4 mx-auto text-muted-foreground/40" /></td>
+                    <td className="px-6 py-4 text-center"><Check className="w-5 h-5 mx-auto text-emerald-500" /></td>
+                    <td className="px-6 py-4 text-center"><Check className="w-5 h-5 mx-auto text-emerald-500" /></td>
                   </tr>
-                  <tr className="hover:bg-card/60 transition-colors">
-                    <td className="px-6 py-4 text-foreground/90">Zintegrowana wirtualna mapa lokalizacji billboardów</td>
-                    <td className="px-6 py-4 text-center text-muted-foreground">-</td>
-                    <td className="px-6 py-4 text-center text-muted-foreground">-</td>
-                    <td className="px-6 py-4 text-center"><Check className="w-4 h-4 mx-auto text-accent" /></td>
+                  <tr className="hover:bg-card/60 transition-colors border-b border-border/50">
+                    <td className="px-6 py-4 text-foreground/90">Powiadomienia o leadach na telefon</td>
+                    <td className="px-6 py-4 text-center"><X className="w-4 h-4 mx-auto text-muted-foreground/40" /></td>
+                    <td className="px-6 py-4 text-center"><Check className="w-5 h-5 mx-auto text-emerald-500" /></td>
+                    <td className="px-6 py-4 text-center"><Check className="w-5 h-5 mx-auto text-emerald-500" /></td>
                   </tr>
-                  <tr className="hover:bg-card/60 transition-colors bg-card/20">
-                    <td className="px-6 py-4 font-semibold text-foreground">Szybkość wdrożenia</td>
-                    <td className="px-6 py-4 text-center text-muted-foreground font-medium">14 dni</td>
-                    <td className="px-6 py-4 text-center text-primary font-medium">10 dni</td>
-                    <td className="px-6 py-4 text-center text-cyan-400 font-medium">do 72 godzin</td>
+                  {/* Category: Ekskluzywne */}
+                  <tr className="bg-card/30">
+                    <td colSpan={4} className="px-6 py-3 text-xs font-bold uppercase tracking-wider text-muted-foreground">⭐ Tylko w Najlepszym</td>
+                  </tr>
+                  <tr className="hover:bg-card/60 transition-colors border-b border-border/50">
+                    <td className="px-6 py-4 text-foreground/90">Interaktywna mapa 500+ lokalizacji</td>
+                    <td className="px-6 py-4 text-center"><X className="w-4 h-4 mx-auto text-muted-foreground/40" /></td>
+                    <td className="px-6 py-4 text-center"><X className="w-4 h-4 mx-auto text-muted-foreground/40" /></td>
+                    <td className="px-6 py-4 text-center"><Check className="w-5 h-5 mx-auto text-emerald-500" /></td>
+                  </tr>
+                  <tr className="hover:bg-card/60 transition-colors border-b border-border/50">
+                    <td className="px-6 py-4 text-foreground/90">Prezentacja całej sieci nośników</td>
+                    <td className="px-6 py-4 text-center"><X className="w-4 h-4 mx-auto text-muted-foreground/40" /></td>
+                    <td className="px-6 py-4 text-center"><X className="w-4 h-4 mx-auto text-muted-foreground/40" /></td>
+                    <td className="px-6 py-4 text-center"><Check className="w-5 h-5 mx-auto text-emerald-500" /></td>
+                  </tr>
+                  <tr className="hover:bg-card/60 transition-colors border-b border-border/50">
+                    <td className="px-6 py-4 text-foreground/90">Priorytetowa realizacja</td>
+                    <td className="px-6 py-4 text-center"><X className="w-4 h-4 mx-auto text-muted-foreground/40" /></td>
+                    <td className="px-6 py-4 text-center"><X className="w-4 h-4 mx-auto text-muted-foreground/40" /></td>
+                    <td className="px-6 py-4 text-center"><Check className="w-5 h-5 mx-auto text-emerald-500" /></td>
+                  </tr>
+                  {/* Summary row */}
+                  <tr className="bg-gradient-to-r from-card/40 via-card/60 to-card/40">
+                    <td className="px-6 py-5 font-semibold text-foreground">Szybkość wdrożenia</td>
+                    <td className="px-6 py-5 text-center text-muted-foreground font-semibold">14 dni</td>
+                    <td className="px-6 py-5 text-center text-primary font-semibold">10 dni</td>
+                    <td className="px-6 py-5 text-center text-cyan-400 font-semibold">do 72h ⚡</td>
+                  </tr>
+                  <tr className="bg-gradient-to-r from-card/40 via-card/60 to-card/40 border-t border-border/50">
+                    <td className="px-6 py-5 font-semibold text-foreground">Cena</td>
+                    <td className="px-6 py-5 text-center text-muted-foreground font-bold text-lg">3 500 zł</td>
+                    <td className="px-6 py-5 text-center text-primary font-bold text-lg">5 000 zł</td>
+                    <td className="px-6 py-5 text-center text-cyan-400 font-bold text-lg">7 000 zł</td>
                   </tr>
                 </tbody>
               </table>
+            </div>
+
+            {/* Mobile stacked comparison */}
+            <div className="md:hidden space-y-3">
+              {[
+                { feature: "Responsywna strona", p: true, r: true, n: true },
+                { feature: "Wdrożenie hostingu", p: true, r: true, n: true },
+                { feature: "Copywriting OOH", p: false, r: true, n: true },
+                { feature: "Lejek sprzedażowy", p: false, r: true, n: true },
+                { feature: "Powiadomienia o leadach", p: false, r: true, n: true },
+                { feature: "Mapa 500+ lokalizacji", p: false, r: false, n: true },
+                { feature: "Prezentacja sieci nośników", p: false, r: false, n: true },
+                { feature: "Priorytetowa realizacja", p: false, r: false, n: true },
+              ].map((row, i) => (
+                <div key={i} className="p-4 rounded-xl bg-card/40 border border-border/50">
+                  <p className="text-sm font-medium text-foreground mb-3">{row.feature}</p>
+                  <div className="grid grid-cols-3 gap-2 text-center">
+                    <div className="flex flex-col items-center gap-1">
+                      <span className="text-[10px] text-muted-foreground uppercase">Podst.</span>
+                      {row.p ? <Check className="w-4 h-4 text-emerald-500" /> : <X className="w-4 h-4 text-muted-foreground/30" />}
+                    </div>
+                    <div className="flex flex-col items-center gap-1">
+                      <span className="text-[10px] text-primary uppercase">Rozwój</span>
+                      {row.r ? <Check className="w-4 h-4 text-emerald-500" /> : <X className="w-4 h-4 text-muted-foreground/30" />}
+                    </div>
+                    <div className="flex flex-col items-center gap-1">
+                      <span className="text-[10px] text-accent uppercase">Najlep.</span>
+                      {row.n ? <Check className="w-4 h-4 text-emerald-500" /> : <X className="w-4 h-4 text-muted-foreground/30" />}
+                    </div>
+                  </div>
+                </div>
+              ))}
+              {/* Summary cards */}
+              <div className="grid grid-cols-3 gap-2 pt-2">
+                <div className="p-3 rounded-xl bg-card/40 border border-border/50 text-center">
+                  <span className="text-[10px] text-muted-foreground uppercase block">Podst.</span>
+                  <span className="text-lg font-bold text-foreground">3 500 zł</span>
+                  <span className="text-xs text-muted-foreground block">14 dni</span>
+                </div>
+                <div className="p-3 rounded-xl bg-card/40 border border-primary/30 text-center">
+                  <span className="text-[10px] text-primary uppercase block">Rozwój</span>
+                  <span className="text-lg font-bold text-primary">5 000 zł</span>
+                  <span className="text-xs text-primary/70 block">10 dni</span>
+                </div>
+                <div className="p-3 rounded-xl bg-card/40 border border-accent/30 text-center">
+                  <span className="text-[10px] text-accent uppercase block">Najlep.</span>
+                  <span className="text-lg font-bold text-cyan-400">7 000 zł</span>
+                  <span className="text-xs text-cyan-400/70 block">do 72h ⚡</span>
+                </div>
+              </div>
             </div>
           </motion.div>
         </motion.div>
@@ -607,22 +747,22 @@ export default function BillboardPage() {
 
                 <div className="pr-28 md:pr-0">
                   <h3 className="text-xl md:text-2xl font-bold mb-2">Utrzymanie i obsługa strony</h3>
-                  <p className="text-sm text-muted-foreground mb-8">Pakiet miesięczny - wszystko w jednej cenie</p>
+                  <p className="text-sm text-muted-foreground mb-8">Pakiet miesięczny - wszystko w jednej cenie.</p>
                 </div>
 
                 {/* Features grid */}
                 <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
                   {[
-                    { icon: Headphones, title: "Stały kontakt", desc: "Szybka reakcja na Twoje potrzeby" },
-                    { icon: RefreshCw, title: "Aktualizacje", desc: "Bieżące zmiany i ulepszenia" },
-                    { icon: Edit3, title: "Edycja treści", desc: "Oferty, zdjęcia, teksty" },
-                    { icon: PlusCircle, title: "Nowe elementy", desc: "Rozbudowa funkcjonalności" },
-                    { icon: Wrench, title: "Opieka techniczna", desc: "Hosting, domena, certyfikat SSL" },
-                    { icon: Shield, title: "Bezpieczeństwo", desc: "Kopie zapasowe i monitoring" }
+                    { icon: Headphones, title: "Stały kontakt", desc: "Szybka reakcja na Twoje potrzeby." },
+                    { icon: RefreshCw, title: "Aktualizacje", desc: "Bieżące zmiany i ulepszenia." },
+                    { icon: Edit3, title: "Edycja treści", desc: "Oferty, zdjęcia, teksty." },
+                    { icon: PlusCircle, title: "Nowe elementy", desc: "Rozbudowa funkcjonalności." },
+                    { icon: Wrench, title: "Opieka techniczna", desc: "Hosting, domena, certyfikat SSL." },
+                    { icon: Shield, title: "Bezpieczeństwo", desc: "Kopie zapasowe i monitoring." }
                   ].map((item, i) => (
-                    <div key={i} className="flex items-start gap-3 p-3 rounded-xl bg-card/50 border border-border/50">
-                      <div className="w-10 h-10 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center shrink-0">
-                        <item.icon className="w-5 h-5 text-primary" />
+                    <div key={i} className="group/maint flex items-start gap-3 p-3 rounded-xl bg-card/50 border border-border/50 transition-all duration-300 hover:bg-card/80 hover:border-primary/30 hover:shadow-[0_4px_16px_rgba(0,0,0,0.15)] hover:-translate-y-0.5">
+                      <div className="w-10 h-10 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center shrink-0 transition-all duration-300 group-hover/maint:bg-primary/20 group-hover/maint:border-primary/40">
+                        <item.icon className="w-5 h-5 text-primary transition-transform duration-300 group-hover/maint:scale-110" />
                       </div>
                       <div>
                         <span className="text-sm font-medium text-foreground">{item.title}</span>
@@ -634,7 +774,7 @@ export default function BillboardPage() {
 
                 <div className="mt-8 pt-6 border-t border-border/50 text-center">
                   <p className="text-muted-foreground">
-                    <span className="text-foreground font-medium">Zero stresu</span> - Ty zajmujesz się klientami, my stroną
+                    <span className="text-foreground font-medium">Zero stresu</span> — Ty zajmujesz się klientami, my stroną.
                   </p>
                 </div>
               </div>
@@ -662,7 +802,7 @@ export default function BillboardPage() {
                   Masz pytania? Chcesz pogadać o szczegółach?
                 </h2>
                 <p className="text-muted-foreground mb-8 max-w-xl mx-auto">
-                  Zadzwoń — chętnie odpowiemy na wszystkie pytania i pomożemy wybrać najlepszą opcję dla Twojego biznesu
+                  Zadzwoń — chętnie odpowiemy na wszystkie pytania i pomożemy wybrać najlepszą opcję dla Twojego biznesu.
                 </p>
 
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -694,7 +834,7 @@ export default function BillboardPage() {
           className="max-w-7xl mx-auto text-center"
         >
           <p className="text-sm text-muted-foreground">
-            Oferta przygotowana przez <span className="text-foreground font-medium">Kamila Tańskiego</span> i <span className="text-foreground font-medium">Leona Bednarskiego</span>
+            Oferta przygotowana przez <span className="text-foreground font-medium">Kamila Tańskiego</span> i <span className="text-foreground font-medium">Leona Bednarskiego</span>.
           </p>
         </motion.div>
       </footer>
